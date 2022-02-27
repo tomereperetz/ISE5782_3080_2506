@@ -6,14 +6,12 @@ package primitives;
  * @author Nitay Kazimirsky and Tomer Peretz
 */
 public class Ray {
-	private final Point p0 = null;
-	private final Vector dir = null;
+	private final Point p0;
+	private final Vector dir;
 	
 	public Ray(Point p, Vector v) {
-		getP0().xyz = p.xyz;
-		dir.normalize();
-		getDir().xyz = v.xyz;
-		//further changes...
+		p0 = p;
+		dir = v.normalize();
 	}
 	
 	public Point getP0() {

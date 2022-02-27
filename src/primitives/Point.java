@@ -8,7 +8,7 @@ package primitives;
 
 public class Point {
 	
-	final Double3 xyz = null;
+	final Double3 xyz;
 	
 	public Point(double c1, double c2, double c3) {
 		this.xyz = new Double3(c1, c2, c3);
