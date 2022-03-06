@@ -36,7 +36,6 @@ public class Ray {
 		return dir;
 	}
 	
-	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) return true;

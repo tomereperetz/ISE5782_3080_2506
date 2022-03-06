@@ -14,8 +14,8 @@ public class Vector extends Point {
 	 */
 	public Vector(Double3 myXyz) throws IllegalArgumentException {
 		super(myXyz);
-		if(myXyz.d1 == 0 && myXyz.d2 == 0 && myXyz.d3 == 0)
-			throw new IllegalArgumentException("zero vector is not allowed");	
+		if(myXyz.equals(Double3.ZERO))
+			throw new IllegalArgumentException("zero vector is not allowed");
 	}
 	
 	/**
@@ -24,10 +24,11 @@ public class Vector extends Point {
 	 * @param c2
 	 * @param c3
 	 */
-	public Vector(double c1, double c2, double c3) {
+	public Vector(double c1, double c2, double c3) throws IllegalArgumentException {
 		super(c1,c2,c3);
-		if(c1 == 0 && c2 == 0 && c3 == 0)
-			throw new IllegalArgumentException("zero vector is not allowed");	
+		Double3 tmpXyz = new Double3(c1, c2, c3);
+		if(tmpXyz.equals(Double3.ZERO))
+			throw new IllegalArgumentException("zero vector is not allowed");
 	}
 	
 	/**
@@ -59,11 +60,12 @@ public class Vector extends Point {
 	}
 	
 	/**
+	 * receives a scalar and multiplies the scalar by each coordinate of the vector
 	 * 
 	 * @param scalar
 	 * @return
 	 */
-	public Vector subtract(double scalar) {
+	public Vector scale(double scalar) {
 		return new Vector(this.getXyz().scale(scalar));
 	}
 	

@@ -8,7 +8,7 @@ package primitives;
 
 public class Point {
 	
-	protected final Double3 xyz;
+	/*protected*/ final Double3 xyz;
 	
 	/**
 	 * Constructor to initialize Point based object with its values

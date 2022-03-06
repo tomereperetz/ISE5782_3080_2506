@@ -19,8 +19,9 @@ public class Cylinder extends Tube {
 	 * @param myAxisRay
 	 * @param myRadius
 	 */
-	public Cylinder(Ray myAxisRay, double myRadius) {
+	public Cylinder(Ray myAxisRay, double myRadius, double myHeight) {
 		super(myAxisRay, myRadius);
+		height = myHeight;
 	}
 	
 	/**
