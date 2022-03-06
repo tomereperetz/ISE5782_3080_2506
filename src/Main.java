@@ -1,3 +1,7 @@
+/* Nitay Kazimirsky 316612506 nitaykazi@gmail.com
+ * Tomer Peretz 	314083080 tomerperetz55@gmail.com
+ */
+
 import primitives.*;
 import static java.lang.System.out;
 import static primitives.Util.*;
