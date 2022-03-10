@@ -1,8 +1,6 @@
 package geometries;
 
-import primitives.Point;
-import primitives.Ray;
-import primitives.Vector;
+import primitives.*;
 
 /**
 * This class will declare and implement necessary functionality of Tube* 
@@ -10,14 +8,14 @@ import primitives.Vector;
 */
 public class Tube implements Geometry {
 	
-	protected Ray axisRay;
-	protected double radius;
+	final protected Ray axisRay;
+	final protected double radius;
 	
 	/**
 	 * Constructor to initialize Tube based object with its values
 	 * 
-	 * @param myAxisRay
-	 * @param myRadius 
+	 * @param myAxisRay axis ray
+	 * @param myRadius radius
 	 */
 	public Tube(Ray myAxisRay, double myRadius) {
 		axisRay = myAxisRay;
@@ -27,7 +25,7 @@ public class Tube implements Geometry {
 	/**
 	 * get axis ray of tube
 	 * 
-	 * @return Ray
+	 * @return axis ray
 	 */
 	public Ray getAxisRay() {
 		return axisRay;
@@ -36,7 +34,7 @@ public class Tube implements Geometry {
 	/**
 	 * get radius of tube
 	 * 
-	 * @return double
+	 * @return radius
 	 */
 	public double getRadius() {
 		return radius;

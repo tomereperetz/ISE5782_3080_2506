@@ -4,15 +4,15 @@ import primitives.Point;
 import primitives.Vector;
 
 /**
- * Geometry interface includes all geometry unprimitives polygons 
+ * Geometry interface includes all unprimitives geometries 
  * @author Tomer Peretz and Nitay Kazimirsky
  */
 public interface Geometry {
 	
 	/**
-	 * receives a point and returns the vertical vector of the polygon at that point
-	 * @param p point of polygon
-	 * @return Vector
+	 * receives a point and returns the vertical vector of the geometry at that point
+	 * @param p point on the surface of geometry
+	 * @return normal vector
 	 */
 	public Vector getNormal(Point p);
 }

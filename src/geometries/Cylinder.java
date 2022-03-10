@@ -1,8 +1,6 @@
 package geometries;
 
-import primitives.Point;
-import primitives.Ray;
-import primitives.Vector;
+import primitives.*;
 
 
 /**
@@ -11,13 +9,13 @@ import primitives.Vector;
 */
 public class Cylinder extends Tube {
 	
-	private double height;
+	final private double height;
 	
 	/**
 	 * Constructor to initialize Cylinder based object with its values
 	 * 
-	 * @param myAxisRay
-	 * @param myRadius
+	 * @param myAxisRay axis ray
+	 * @param myRadius radius of circle
 	 */
 	public Cylinder(Ray myAxisRay, double myRadius, double myHeight) {
 		super(myAxisRay, myRadius);
@@ -27,7 +25,7 @@ public class Cylinder extends Tube {
 	/**
 	 * get height of Cylinder
 	 * 
-	 * @return double
+	 * @return height
 	 */
 	public double getHeight() {
 		return height;

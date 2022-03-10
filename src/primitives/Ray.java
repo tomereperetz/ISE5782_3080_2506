@@ -6,8 +6,8 @@ package primitives;
  * @author Nitay Kazimirsky and Tomer Peretz
 */
 public class Ray {
-	private final Point p0;
-	private final Vector dir;
+	final private Point p0;
+	final private Vector dir;
 	
 	/**
 	 * Constructor to initialize Ray based object with its values
@@ -21,16 +21,16 @@ public class Ray {
 	}
 	
 	/**
-	 * get ray's defining point
-	 * @return Point
+	 * get ray's starting point
+	 * @return starting point
 	 */
 	public Point getP0() {
 		return p0;
 	}
 	
 	/**
-	 * get ray's defining vector
-	 * @return Vector
+	 * get ray's starting vector
+	 * @return starting vector
 	 */
 	public Vector getDir() {
 		return dir;

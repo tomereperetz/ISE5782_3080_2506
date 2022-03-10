@@ -8,8 +8,8 @@ import primitives.Vector;
 * @author Nitay Kazimirsky and Tomer Peretz
 */
 public class Plane implements Geometry {
-	/*final*/ private Point p0;
-	/*final*/ private Vector normal;
+	final private Point p0;
+	final private Vector normal;
 	
 	/**
 	 * Constructor to initialize Cylinder based object with its values
@@ -35,9 +35,9 @@ public class Plane implements Geometry {
 	}
 	
 	/**
-	 * get plane's defining point
+	 * get plane's starting point
 	 * 
-	 * @return Point
+	 * @return starting point
 	 */
 	public Point getP0() {
 		return p0;
@@ -46,7 +46,7 @@ public class Plane implements Geometry {
 	/**
 	 * get plane's defining vector
 	 * 
-	 * @return Vector
+	 * @return normal vector
 	 */
 	public Vector getNormal() {
 		return normal;

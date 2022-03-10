@@ -8,17 +8,17 @@ package primitives;
 
 public class Point {
 	
-	/*protected*/ final Double3 xyz;
+	final protected Double3 xyz;
 	
 	/**
 	 * Constructor to initialize Point based object with its values
 	 * 
-	 * @param c1 
-	 * @param c2
-	 * @param c3
+	 * @param x first coordinate 
+	 * @param y second coordinate
+	 * @param z third coordinate
 	 */
-	public Point(double c1, double c2, double c3) {
-		this.xyz = new Double3(c1, c2, c3);
+	public Point(double x, double y, double z) {
+		this.xyz = new Double3(x, y, z);
 	}
 	
 	/**
@@ -46,8 +46,8 @@ public class Point {
 	
 	/**
 	 * adds point to vector and returns head point of new vector
-	 * @param v
-	 * @return Point
+	 * @param v vector
+	 * @return end point of new vector
 	 */
 	public Point add(Vector v) {
 		return new Point(this.xyz.add(v.xyz));
@@ -56,8 +56,8 @@ public class Point {
 	/**
 	 * receives point and returns head point of new vector, created
 	 * by subtracting point from vector
-	 * @param p
-	 * @return
+	 * @param p point
+	 * @return new vector
 	 */
 	public Vector subtract(Point p) {
 		return new Vector(this.xyz.subtract(p.xyz));

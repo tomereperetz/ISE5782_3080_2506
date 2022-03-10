@@ -1,120 +1,120 @@
 package primitives;
 
 /**
- * Class Vector is the basic class representing vector of Euclidean geometry in Cartesian
- * 3-Dimensional coordinate system.
+ * Class Vector is the basic class representing vector of Euclidean geometry in
+ * Cartesian 3-Dimensional coordinate system.
+ * 
  * @author Nitay Kazimirsky and Tomer Peretz
-*/
+ */
 public class Vector extends Point {
-	
+
 	/**
 	 * Constructor to initialize Vector based object with its values
 	 * 
-	 * @param myXyz
+	 * @param myXyz Double3 class performance
 	 */
-	public Vector(Double3 myXyz) throws IllegalArgumentException {
+	Vector(Double3 myXyz) throws IllegalArgumentException {
 		super(myXyz);
-		if(myXyz.equals(Double3.ZERO))
+		if (myXyz.equals(Double3.ZERO))
 			throw new IllegalArgumentException("zero vector is not allowed");
 	}
-	
+
 	/**
 	 * Constructor to initialize Vector based object with its values
-	 * @param c1
-	 * @param c2
-	 * @param c3
+	 * 
+	 * @param x first coordinate
+	 * @param y second coordinate
+	 * @param z third coordinate
 	 */
-	public Vector(double c1, double c2, double c3) throws IllegalArgumentException {
-		super(c1,c2,c3);
-		Double3 tmpXyz = new Double3(c1, c2, c3);
-		if(tmpXyz.equals(Double3.ZERO))
-			throw new IllegalArgumentException("zero vector is not allowed");
+	public Vector(double x, double y, double z) throws IllegalArgumentException {
+		this(new Double3(x, y, z));
 	}
-	
-	/**
-	 * get vector's head point
-	 * @return Double3 class performance 
-	 */
-	public Double3 getXyz() {
-		return xyz;
-	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
-		return super.equals(obj);
+		if (this == obj) return true;
+	    if (obj == null) return false;
+	    if (!(obj instanceof Vector)) return false;
+	    Vector other = (Vector)obj;
+	    return this.xyz.equals(other.xyz) && super.equals(obj);
 	}
-	
+
 	@Override
 	public String toString() {
-		return "(" + getXyz().d1 + ", " + getXyz().d2 + ", " + getXyz().d3 + ")";
+		return "(" + xyz.d1 + ", " + xyz.d2 + ", " + xyz.d3 + ")";
 	}
-	
+
 	/**
 	 * adds two vectors and returns the result
-	 * @return vector
+	 * 
+	 * @return new vector
 	 */
 	@Override
 	public Vector add(Vector v) {
-		Vector myVector = new Vector(v.getXyz().add(this.getXyz()));
+		Vector myVector = new Vector(v.xyz.add(this.xyz));
 		return myVector;
 	}
-	
+
 	/**
 	 * receives a scalar and multiplies the scalar by each coordinate of the vector
 	 * 
 	 * @param scalar
-	 * @return
+	 * @return new vector 
 	 */
 	public Vector scale(double scalar) {
-		return new Vector(this.getXyz().scale(scalar));
+		return new Vector(this.xyz.scale(scalar));
 	}
-	
+
 	/**
 	 * receives vector and multiples it with our vector.
-	 * @param v vector 
+	 * 
+	 * @param v vector
 	 * @return new vector
 	 */
 	public Vector crossProduct(Vector v) {
-		Double3 myXyz = new Double3(this.getXyz().d2 * v.getXyz().d3 - this.getXyz().d3 * v.getXyz().d2,
-									this.getXyz().d3 * v.getXyz().d1 - this.getXyz().d1 * v.getXyz().d3,
-									this.getXyz().d1 * v.getXyz().d2 - this.getXyz().d2 * v.getXyz().d1);
-		return new Vector(myXyz);
+		return new Vector(//
+				this.xyz.d2 * v.xyz.d3 - this.xyz.d3 * v.xyz.d2, //
+				this.xyz.d3 * v.xyz.d1 - this.xyz.d1 * v.xyz.d3, //
+				this.xyz.d1 * v.xyz.d2 - this.xyz.d2 * v.xyz.d1);
 	}
-	
+
 	/**
 	 * calculates vector's length squared
-	 * @return
+	 * 
+	 * @return vector's length squared
 	 */
 	public double lengthSquared() {
-		return this.getXyz().d1 * this.getXyz().d1 +
-			   this.getXyz().d2 * this.getXyz().d2 +
-			   this.getXyz().d3 * this.getXyz().d3;
+		return dotProduct(this);
 	}
-	
+
 	/**
 	 * calculates vector's length
-	 * @return
+	 * 
+	 * @return vector's length
 	 */
 	public double length() {
 		return Math.sqrt(this.lengthSquared());
 	}
-	
+
 	/**
 	 * receives vector and normalizes it.
+	 * 
 	 * @return normalizes Vector
 	 */
 	public Vector normalize() {
-		return new Vector(this.getXyz().reduce(this.length()));
+		return new Vector(this.xyz.reduce(this.length()));
 	}
-	
+
 	/**
 	 * receives vector and returns the scalar multiply operator result
+	 * 
 	 * @param v
-	 * @return double
+	 * @return result of product (scalar)
 	 */
 	public double dotProduct(Vector v) {
-		Vector myVector = new Vector(this.getXyz().product(v.getXyz()));
-		return myVector.getXyz().d1 + myVector.getXyz().d2 + myVector.getXyz().d3;
+		return this.xyz.product(v.xyz).d1 +
+			   this.xyz.product(v.xyz).d2 +
+			   this.xyz.product(v.xyz).d3;
 	}
-	
+
 }

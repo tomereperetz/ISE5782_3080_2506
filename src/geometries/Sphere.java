@@ -8,8 +8,8 @@ import primitives.Vector;
 * @author Nitay Kazimirsky and Tomer Peretz
 */
 public class Sphere implements Geometry {
-	private Point center;
-	private double radius;
+	final private Point center;
+	final private double radius;
 
 	@Override
 	public Vector getNormal(Point p) {
@@ -17,7 +17,7 @@ public class Sphere implements Geometry {
 	}
 	
 	/**
-	 * Constructor to initialize Cylinder based object with its values
+	 * Constructor to initialize Sphere based object with its values
 	 * 
 	 * @param p point
 	 * @param myRadius radius
@@ -29,7 +29,7 @@ public class Sphere implements Geometry {
 	
 	/**
 	 * get center if sphere point
-	 * @return Point
+	 * @return center point
 	 */
 	public Point getCenter() {
 		return center;
@@ -37,7 +37,7 @@ public class Sphere implements Geometry {
 	
 	/**
 	 * get sphere's radius
-	 * @return double
+	 * @return radius
 	 */
 	public double getRadius() {
 		return radius;
