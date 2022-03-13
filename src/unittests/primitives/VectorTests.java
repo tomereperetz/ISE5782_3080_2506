@@ -1,6 +1,7 @@
 package unittests.primitives;
 
 import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static primitives.Util.isZero;
 
@@ -45,11 +46,11 @@ public class VectorTests {
 	 * Test method for {@link primitives.Vector#length()}.
 	 */
 	@Test
-	public void testLength() {
+	public void testLengthSquared() {
 		// ============ Equivalence Partitions Tests ==============
 		Vector v = new Vector(0, 3, 4);
 		// TC01: Test that length of vector is proper
-		assertTrue("ERROR: lengthSquared() wrong value", !isZero(v.length() - 5));
+		assertEquals(5, v.length(), 0.00001, "ERROR: lengthSquared() wrong value\"");
 	}
 
 	/**
@@ -64,12 +65,16 @@ public class VectorTests {
 		// TC01: Test if normalized vector's length is 1
 		assertTrue("ERROR: the normalized vector is not a unit vector", isZero(v2.length() - 1));
 	
-		// TC02: Test if normalized vector and original vector are parallel
+		// TC02: Test if normalized vector is parallel to the original one  
 		assertThrows(IllegalArgumentException.class, () -> v1.crossProduct(v2),
 			"ERROR: the normalized vector is not parallel to the original one");
 		
 		// TC03: Test if both vectors are at the same direction
-		assertTrue("ERROR: the normalized vector is opposite to the original one", v1.dotProduct(v2) < 0);
+		boolean flag = true;
+		if(v1.dotProduct(v2) < 0) 
+			flag = false;
+		assertTrue("ERROR: normalized vector and original one"
+				+  "are not at the same direction", flag);
 	}
 
 	/**
@@ -82,10 +87,13 @@ public class VectorTests {
 		Vector v2 = new Vector(-2, -4, -6);
 		Vector v3 = new Vector(0, 3, -2);
 		// TC01: Test that dot product is proper for orthogonal vectors
-		assertTrue("ERROR: dotProduct() for orthogonal vectors is not zero", !isZero(v1.dotProduct(v3)));
+		assertEquals(-28, v1.dotProduct(v2), 0.00001,
+				"ERROR: dotProduct() for orthogonal vectors is not zero");
+				
 		
 		// TC02: Test that dot product is proper for not orthogonal vectors
-		assertTrue("ERROR: dotProduct() wrong value", !isZero(v1.dotProduct(v2) + 28));
+		assertEquals(0, v1.dotProduct(v3), 0.00001,
+				"ERROR: dotProduct() for orthogonal vectors is not zero");
 	}
 	
 }
