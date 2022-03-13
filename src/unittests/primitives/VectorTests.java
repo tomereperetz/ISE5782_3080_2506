@@ -1,11 +1,6 @@
-/**
- * 
- */
 package unittests.primitives;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThrows;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static primitives.Util.isZero;
 
@@ -20,20 +15,6 @@ import primitives.Vector;
  *
  */
 public class VectorTests {
-
-	/**
-	 * Test method for {@link primitives.Vector#scale(double)}.
-	 */
-	@Test
-	public void testScale() {
-        // ============ Equivalence Partitions Tests ==============
-		Vector v1 = new Vector(1, 2, 3);
-		double scalar = 3.5;
-		Vector v2 = new Vector(3.5,7,10.5);
-        // TC01: Test that vector scale is proper
-		assertEquals("ERROR: vector scale wrong value", v1.scale(scalar), v2);
-	}
-
 	/**
 	 * Test method for {@link primitives.Vector#crossProduct(primitives.Vector)}.
 	 */
@@ -59,17 +40,6 @@ public class VectorTests {
         assertThrows("crossProduct() for parallel vectors does not throw an exception",
                 IllegalArgumentException.class, () -> v1.crossProduct(v3));
     }
-
-	/**
-	 * Test method for {@link primitives.Vector#lengthSquared()}.
-	 */
-	@Test
-	public void testLengthSquared() {	
-		// ============ Equivalence Partitions Tests ==============
-		Vector v = new Vector(1, 2, 3);
-		// TC01: Test that squared length of vector is proper
-		assertEquals("ERROR: lengthSquared() wrong value", v.lengthSquared(), 14, 0.00001);
-	}
 
 	/**
 	 * Test method for {@link primitives.Vector#length()}.
@@ -117,5 +87,5 @@ public class VectorTests {
 		// TC02: Test that dot product is proper for not orthogonal vectors
 		assertTrue("ERROR: dotProduct() wrong value", !isZero(v1.dotProduct(v2) + 28));
 	}
-
+	
 }

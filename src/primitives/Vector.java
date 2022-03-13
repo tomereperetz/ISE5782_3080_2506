@@ -99,7 +99,7 @@ public class Vector extends Point {
 	/**
 	 * receives vector and normalizes it.
 	 * 
-	 * @return normalizes Vector
+	 * @return normalized Vector
 	 */
 	public Vector normalize() {
 		return new Vector(this.xyz.reduce(this.length()));
@@ -108,13 +108,13 @@ public class Vector extends Point {
 	/**
 	 * receives vector and returns the scalar multiply operator result
 	 * 
-	 * @param v
+	 * @param v vector
 	 * @return result of product (scalar)
 	 */
 	public double dotProduct(Vector v) {
-		return this.xyz.product(v.xyz).d1 +
-			   this.xyz.product(v.xyz).d2 +
-			   this.xyz.product(v.xyz).d3;
+		return this.xyz.d1 * v.xyz.d1 +
+			   this.xyz.d2 * v.xyz.d2 +
+			   this.xyz.d3 * v.xyz.d3;
 	}
 
 }

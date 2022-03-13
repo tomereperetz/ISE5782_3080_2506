@@ -1,5 +1,6 @@
 package primitives;
 
+
 /**
  * Class Point is the basic class representing 3D point of Euclidean geometry in Cartesian
  * 3-Dimensional coordinate system.
@@ -61,6 +62,28 @@ public class Point {
 	 */
 	public Vector subtract(Point p) {
 		return new Vector(this.xyz.subtract(p.xyz));
+	}
+
+	/**
+	 * receives point and returns the squared distance between
+	 * points
+	 * @param p point
+	 * @return squared distance between points
+	 */
+	public double distanceSquared(Point p) {
+		return (p.xyz.d1 - this.xyz.d1) * (p.xyz.d1 - this.xyz.d1) + 
+			   (p.xyz.d2 - this.xyz.d2) * (p.xyz.d2 - this.xyz.d2) +
+			   (p.xyz.d3 - this.xyz.d3) * (p.xyz.d3 - this.xyz.d3);
+	}
+	
+	/**
+	 * receives point and returns the squared distance between
+	 * points
+	 * @param p point
+	 * @return squared distance between points
+	 */
+	public double distance(Point p) {
+		return Math.sqrt(distance(p));
 	}
 
 }

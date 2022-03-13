@@ -67,7 +67,7 @@ public class PolygonTests {
 	}
 
 	/**
-	 * Test method for {@link geometries.Polygon#getNormal(primitives.Point)}.
+	 * Test me  thod for {@link geometries.Polygon#getNormal(primitives.Point)}.
 	 */
 	@Test
 	public void testGetNormal() {

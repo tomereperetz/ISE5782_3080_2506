@@ -20,7 +20,7 @@ class CylinderTests {
 	 */
 	@Test
 	void testGetNormal() {
-		fail("Not yet implemented");
+		
 	}
 
 }

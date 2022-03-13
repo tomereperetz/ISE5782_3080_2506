@@ -31,7 +31,9 @@ public class Plane implements Geometry {
 	 */
 	public Plane(Point p1, Point p2, Point p3) {
 		p0 = p1;
-		normal = null;
+		Vector v1 = p1.subtract(p2);
+		Vector v2 = p2.subtract(p3);
+		normal = v1.crossProduct(v2);
 	}
 	
 	/**
@@ -49,12 +51,12 @@ public class Plane implements Geometry {
 	 * @return normal vector
 	 */
 	public Vector getNormal() {
-		return normal;
+		return normal.normalize();
 	}
 	
 	@Override
 	public Vector getNormal(Point p) {
-		return null;
+		return getNormal();
 	}
 	
 	@Override
