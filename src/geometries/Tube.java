@@ -3,6 +3,8 @@ package geometries;
 import primitives.*;
 import static primitives.Util.*;
 
+import java.util.List;
+
 /**
 * This class will declare and implement necessary functionality of Tube* 
 * @author Nitay Kazimirsky and Tomer Peretz
@@ -53,6 +55,11 @@ public class Tube implements Geometry {
 	@Override
 	public String toString() {
 		return "axis ray: " + axisRay.toString() + "\nradius " + radius;
+	}
+	
+	@Override
+	public List<Point> findIntersections(Ray ray) {
+		return null;
 	}
 
 }

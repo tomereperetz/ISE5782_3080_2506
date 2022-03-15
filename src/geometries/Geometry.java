@@ -7,7 +7,7 @@ import primitives.Vector;
  * Geometry interface includes all unprimitives geometries 
  * @author Tomer Peretz and Nitay Kazimirsky
  */
-public interface Geometry {
+public interface Geometry extends Intersectable {
 	
 	/**
 	 * receives a point and returns the vertical vector of the geometry at that point

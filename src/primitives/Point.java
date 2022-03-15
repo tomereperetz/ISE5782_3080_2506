@@ -86,5 +86,13 @@ public class Point {
 	public double distance(Point p) {
 		return Math.sqrt(this.distanceSquared(p));
 	}
+	
+	/**
+	 * get point Doble3 variable
+	 * @return center point
+	 */
+	public Double3 getXyz() {
+		return xyz;
+	}
 
 }

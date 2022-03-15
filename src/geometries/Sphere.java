@@ -1,6 +1,9 @@
 package geometries;
 
+import java.util.List;
+
 import primitives.Point;
+import primitives.Ray;
 import primitives.Vector;
 
 /**
@@ -14,6 +17,11 @@ public class Sphere implements Geometry {
 	@Override
 	public Vector getNormal(Point p) {
 		return p.subtract(center).normalize();
+	}
+	
+	@Override
+	public List<Point> findIntersections(Ray ray) {
+		return null;
 	}
 	
 	/**
