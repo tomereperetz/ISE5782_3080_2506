@@ -1,6 +1,7 @@
 package geometries;
 
 import primitives.*;
+import static primitives.Util.*;
 
 /**
 * This class will declare and implement necessary functionality of Tube* 
@@ -42,8 +43,10 @@ public class Tube implements Geometry {
 
 	@Override
 	public Vector getNormal(Point p) {
-		double u = axisRay.getDir().dotProduct(p.subtract(axisRay.getP0()));
-		Point o = axisRay.getP0().add(axisRay.getDir().scale(u));
+		Point p0 = axisRay.getP0();
+		Vector dir = axisRay.getDir();
+		double u = dir.dotProduct(p.subtract(p0));
+		Point o = isZero(u) ? p0 : p0.add(dir.scale(u));
 		return p.subtract(o).normalize();
 	}
 	

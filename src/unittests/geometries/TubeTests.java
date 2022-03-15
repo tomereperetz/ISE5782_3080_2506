@@ -26,7 +26,7 @@ class TubeTests {
 		// ============ Boundary Values Tests ==============
 		// TC10: Test normal when connecting the head of the axis ray and the point
 		// creates a 90 degrees angle with the axis ray
-		Vector normal2 = t.getNormal(new Point(1, 0, 1));
+		Vector normal2 = t.getNormal(new Point(1, 0, -1));
 		assertEquals(normal2, new Vector(1, 0, 0), "Bad normal to tube (orthogonal)");
 	}
 }

@@ -71,19 +71,20 @@ public class Point {
 	 * @return squared distance between points
 	 */
 	public double distanceSquared(Point p) {
-		return (p.xyz.d1 - this.xyz.d1) * (p.xyz.d1 - this.xyz.d1) + 
-			   (p.xyz.d2 - this.xyz.d2) * (p.xyz.d2 - this.xyz.d2) +
-			   (p.xyz.d3 - this.xyz.d3) * (p.xyz.d3 - this.xyz.d3);
+		double d1 = p.xyz.d1 - this.xyz.d1;
+		double d2 = p.xyz.d2 - this.xyz.d2;
+		double d3 = p.xyz.d3 - this.xyz.d3;
+		return d1 * d1 + d2 * d2 + d3 * d3;
 	}
 	
 	/**
-	 * receives point and returns the squared distance between
+	 * receives point and returns the distance between
 	 * points
 	 * @param p point
-	 * @return squared distance between points
+	 * @return distance between points
 	 */
 	public double distance(Point p) {
-		return Math.sqrt(distance(p));
+		return Math.sqrt(this.distanceSquared(p));
 	}
 
 }

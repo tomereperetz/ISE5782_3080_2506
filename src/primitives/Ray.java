@@ -42,12 +42,12 @@ public class Ray {
 	    if (obj == null) return false;
 	    if (!(obj instanceof Ray)) return false;
 	    Ray other = (Ray)obj;
-	    return this.getP0().equals(other.getP0()) && this.getDir().equals(other.getDir());
+	    return this.p0.equals(other.p0) && this.dir.equals(other.dir);
 	}
 	
 	@Override
 	public String toString() {
-		return "point: " + getP0().toString() + "\ndirection: " + getDir().toString();
+		return "point: " + p0.toString() + "\ndirection: " + dir.toString();
 	}
 	
 }
