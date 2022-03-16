@@ -26,7 +26,7 @@ class SphereTests {
 	@Test
 	void testGetNormal() {
 		// ============ Equivalence Partitions Tests ==============
-		// TC01: There is a simple single test here
+		// TC01: There is a simple single test here 
 		Sphere s = new Sphere(new Point(0, 0, 0), 1);
 		// the normal vector should be (0,0,1) - self calculation
 		assertEquals(new Vector(0,0,1), 
@@ -142,7 +142,7 @@ class SphereTests {
         assertNull(result, "Ray starts at sphere and gets out");
         
         // **** Group: Special cases
-        // TC19: Ray's line is outside, ray is orthogonal to ray start to sphere's
+        // TC22: Ray's line is outside, ray is orthogonal to ray start to sphere's
         result = sphere.findIntersections(new Ray(new Point(3, 0, 0),
                 new Vector(3, 0, 1)));
         assertNull(result, "Ray's line is outside, "
