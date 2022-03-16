@@ -26,7 +26,7 @@ class SphereTests {
 	@Test
 	void testGetNormal() {
 		// ============ Equivalence Partitions Tests ==============
-		// TC01: There is a simple single test here 
+		// TC01: There is a simple single test here
 		Sphere s = new Sphere(new Point(0, 0, 0), 1);
 		// the normal vector should be (0,0,1) - self calculation
 		assertEquals(new Vector(0,0,1), 
