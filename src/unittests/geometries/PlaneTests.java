@@ -69,11 +69,11 @@ class PlaneTests {
 		List<Point> result = plane.findIntersections(new Ray(
 				new Point(1, 0, 0), new Vector(1, 1, 2)));
         assertEquals(1, result.size(), "Wrong number of points");
-        assertEquals(new Point(1.5, 0.5, 1), result, "Ray intersects plane");
+        assertEquals(List.of(new Point(1.5, 0.5, 1)), result, "Ray intersects plane");
         
         //TC02: Ray doesn't intersects the plane(0 points)
         assertNull(plane.findIntersections(new Ray(
-        		new Point(3, 0, 0), new Vector(1, 2, 3))),
+        		new Point(3, 0, 2), new Vector(1, 2, 3))),
                 "Ray doesn't intersect the plane");
         
         // =============== Equivalence Partitions Tests ==================
@@ -82,7 +82,7 @@ class PlaneTests {
         
         //TC10: The plane includes the ray (infinite number of points - return null)
         assertNull(plane.findIntersections(new Ray(
-        		new Point(1, 1, 1), new Vector(2, 2, 1))),
+        		new Point(2, 1, 1), new Vector(2, 2, 1))),
         		"the plane includes the ray");
         
         //TC11: The plane doesn't include the ray (0 points)
@@ -93,8 +93,8 @@ class PlaneTests {
         // **** Group: Ray is orthogonal to the plane
         
         //TC12: p0 is before the plane (1 point)
-        assertEquals(new Point(1, 1, 1), plane.findIntersections(
-        		new Ray(new Point(1, 1, 0), new Vector(1, 1, 2))),
+        assertEquals(new Point(2, 1, 1), plane.findIntersections(
+        		new Ray(new Point(2, 1, 0), new Vector(2, 1, 2))),
         		"Ray starts before the plane");
         
         //TC13: p0 is in the plane(0 points)

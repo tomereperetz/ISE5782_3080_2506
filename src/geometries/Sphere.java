@@ -28,26 +28,27 @@ public class Sphere implements Geometry {
 		Vector u = center.subtract(p0);
 		double tm = v.dotProduct(u);
 
-		double d = Math.sqrt(u.lengthSquared() - Math.pow(tm, 2));
+		double d = Math.sqrt(u.lengthSquared() - tm * tm);
+		
 		if (d >= radius)
 			return null;
 
-		double th = Math.sqrt(Math.pow(radius, 2) - Math.pow(d, 2));
+		double th = Math.sqrt(radius * radius - d * d);
 
 		double t1 = tm + th;
 		double t2 = tm - th;
 
 		if (t1 > 0 && t2 > 0) {
-			Point p1= p0.add(v.scale(t1));
-			Point p2= p0.add(v.scale(t2));
-			return List.of(p1,p2);
+			Point p1 = p0.add(v.scale(t1));
+			Point p2 = p0.add(v.scale(t2));
+			return List.of(p1, p2);
 		}
-		if(t1>0) {
-			Point p1= p0.add(v.scale(t1));
+		if(t1 > 0) {
+			Point p1 = p0.add(v.scale(t1));
 			return List.of(p1);
 		}
-		if(t2>0) {
-			Point p2= p0.add(v.scale(t2));
+		if(t2 > 0) {
+			Point p2 = p0.add(v.scale(t2));
 			return List.of(p2);
 		}	
 		return null;
