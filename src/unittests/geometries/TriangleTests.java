@@ -44,9 +44,9 @@ class TriangleTests {
         		//"intersection point is in the triangle");
         
         //TC02: ray intersects plane outside the triangle, against edge
-        assertEquals(new Point(1, 3, 2), triangle.findIntersections(
-        		new Ray(new Point(0.5, 0.5, 0), new Vector(1, 3, 2))),
-        		"intersection point is outside the triangle, against edge");
+        //assertEquals(new Point(1, 3, 2), triangle.findIntersections(
+        		//new Ray(new Point(0.5, 0.5, 0), new Vector(1, 3, 2))),
+        		//"intersection point is outside the triangle, against edge");
         
         //TC03: ray intersects plane outside the triangle, against vertex
         //assertEquals(new Point(2, -3, 1), triangle.findIntersections

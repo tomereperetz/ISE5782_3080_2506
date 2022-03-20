@@ -109,11 +109,11 @@ class SphereTests {
         		//"Ray starts at sphere and get inside");
 
         // TC15: Ray starts at the center (1 points)
-        //result = sphere.findIntersections(new Ray(new Point(1, 0, 0),
-                //new Vector(2, 1, 1)));
-        //assertEquals(1, result.size(), "Wrong number of points");
-        //assertEquals(List.of(new Point(1.57,0.57,0.57)), result, 
-        		//"Ray starts at sphere and get inside");
+        result = sphere.findIntersections(new Ray(new Point(1, 0, 0),
+                new Vector(2, 1, 1)));
+        assertEquals(1, result.size(), "Wrong number of points");
+        assertEquals(List.of(new Point(1.816495, 0.408248, 0.408248)), result, 
+        		"Ray starts at sphere and get inside");
         
         // TC16: Ray starts at sphere and goes outside (0 points)
         result = sphere.findIntersections(new Ray(new Point(0, 0, 1),

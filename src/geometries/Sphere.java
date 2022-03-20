@@ -1,10 +1,8 @@
 package geometries;
 
 import java.util.List;
-
-import primitives.Point;
-import primitives.Ray;
-import primitives.Vector;
+import static primitives.Util.*;
+import primitives.*;
 
 /**
  * This class will declare and implement necessary functionality of Sphere*
@@ -24,19 +22,23 @@ public class Sphere implements Geometry {
 	public List<Point> findIntersections(Ray ray) {
 		Point p0 = ray.getP0();
 		Vector v = ray.getDir();
-
+		
+		if (p0.equals(center)) {
+            return List.of(center.add(v.scale(radius)));
+        }
+		
 		Vector u = center.subtract(p0);
-		double tm = v.dotProduct(u);
+		double tm = alignZero(v.dotProduct(u));
 
-		double d = Math.sqrt(u.lengthSquared() - tm * tm);
+		double d = alignZero(Math.sqrt(u.lengthSquared() - tm * tm));
 		
 		if (d >= radius)
 			return null;
 
-		double th = Math.sqrt(radius * radius - d * d);
+		double th = alignZero(Math.sqrt(radius * radius - d * d));
 
-		double t1 = tm + th;
-		double t2 = tm - th;
+		double t1 = alignZero(tm + th);
+		double t2 = alignZero(tm - th);
 
 		if (t1 > 0 && t2 > 0) {
 			Point p1 = p0.add(v.scale(t1));
