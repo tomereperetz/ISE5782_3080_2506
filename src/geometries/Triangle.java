@@ -28,17 +28,18 @@ public class Triangle extends Polygon {
 		Vector v1 = vertices.get(0).subtract(ray.getP0());
 		Vector v2 = vertices.get(1).subtract(ray.getP0());
 		Vector v3 = vertices.get(2).subtract(ray.getP0());
+		
 		Vector n1 = (v1.crossProduct(v2)).normalize();
 		Vector n2 = (v2.crossProduct(v3)).normalize();
 		Vector n3 = (v3.crossProduct(v1)).normalize();
-		if((ray.getDir().dotProduct(n1) > 0 &&
-		    ray.getDir().dotProduct(n2) > 0 &&
-		    ray.getDir().dotProduct(n3) > 0)
-		    || 
-		   (ray.getDir().dotProduct(n1) < 0 &&
-		    ray.getDir().dotProduct(n2) < 0 &&
-		    ray.getDir().dotProduct(n3) < 0))
-				return null;
-		return this.plane.findIntersections(ray);
+		
+		double t1 = ray.getDir().dotProduct(n1);
+		double t2 = ray.getDir().dotProduct(n2);
+		double t3 = ray.getDir().dotProduct(n3);
+		
+		if((t1 > 0 && t2 > 0 && t3 > 0) || (t1 < 0 && t2 < 0 && t3 < 0))
+			return this.plane.findIntersections(ray);
+		
+		return null;
 	}
 }
