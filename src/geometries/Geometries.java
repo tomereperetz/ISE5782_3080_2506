@@ -6,8 +6,6 @@ package geometries;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.swing.event.ListDataEvent;
-
 import primitives.Point;
 import primitives.Ray;
 

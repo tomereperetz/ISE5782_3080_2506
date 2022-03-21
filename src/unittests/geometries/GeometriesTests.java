@@ -18,8 +18,9 @@ public class GeometriesTests {
 	@Test
 	public void TestFindIntersections() {
 		
-		Plane plane = new Plane(
-				new Point(1, 0, 0), new Point(1, 1, 1), new Point(1,-1,1));
+		Plane plane = new Plane(new Point(1, 0, 0),
+					  			new Point(1, 1, 1), 
+					  			new Point(1,-1, 1));
 		Sphere sphere1 = new Sphere(new Point(3, 0, 0), 1);
 		Sphere sphere2 = new Sphere(new Point(3, 0, 0), 1);
 		Sphere sphere3 = new Sphere(new Point(3, 0, 3), 1);
