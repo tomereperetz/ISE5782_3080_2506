@@ -36,12 +36,13 @@ class TriangleTests {
 	@Test
 	void testFindIntersections() {
 		Triangle triangle = new Triangle(new Point(2, 0, 0), new Point(0, 2, 0),
-				new Point(2, 2, 2));
+				new Point(0, 0, 2));
+		
 		// ============ Equivalence Partitions Tests ==============	
 		//TC01: ray intersects plane in triangle
-        //assertEquals(new Point(0.25, 0.25, 0.5), triangle.findIntersections(
-        		//new Ray(new Point(2, 2, 0), new Vector(-1.5, -1.5, 1))), 
-        		//"intersection point is in the triangle");
+        assertEquals(new Point(0.66, 0.66, 0.66), triangle.findIntersections(
+        		new Ray(new Point(2, 2, 0), new Vector(-0.66, -0.66, 1.33))), 
+        		"intersection point is in the triangle");
         
         //TC02: ray intersects plane outside the triangle, against edge
         assertNull(triangle.findIntersections(

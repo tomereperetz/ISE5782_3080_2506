@@ -35,6 +35,16 @@ public class Ray {
 	public Vector getDir() {
 		return dir;
 	}
+
+	/**
+	 * get point on ray
+	 * 
+	 * @param t scalar
+	 * @return requested point
+	 */
+	public Point getPoint(double t) {
+		return this.p0.add(dir.scale(t));
+	}
 	
 	@Override
 	public boolean equals(Object obj) {

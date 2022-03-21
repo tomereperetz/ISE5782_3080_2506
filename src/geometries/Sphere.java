@@ -24,7 +24,7 @@ public class Sphere implements Geometry {
 		Vector v = ray.getDir();
 		
 		if (p0.equals(center)) {
-            return List.of(center.add(v.scale(radius)));
+            return List.of(ray.getPoint(radius));
         }
 		
 		Vector u = center.subtract(p0);
@@ -41,16 +41,16 @@ public class Sphere implements Geometry {
 		double t2 = alignZero(tm - th);
 
 		if (t1 > 0 && t2 > 0) {
-			Point p1 = p0.add(v.scale(t1));
-			Point p2 = p0.add(v.scale(t2));
+			Point p1 = ray.getPoint(t1);
+			Point p2 = ray.getPoint(t2);
 			return List.of(p1, p2);
 		}
 		if(t1 > 0) {
-			Point p1 = p0.add(v.scale(t1));
+			Point p1 = ray.getPoint(t1);
 			return List.of(p1);
 		}
 		if(t2 > 0) {
-			Point p2 = p0.add(v.scale(t2));
+			Point p2 = ray.getPoint(t2);
 			return List.of(p2);
 		}	
 		return null;
