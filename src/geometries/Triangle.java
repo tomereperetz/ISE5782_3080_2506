@@ -29,8 +29,10 @@ public class Triangle extends Polygon {
 	
 	@Override
 	public List<Point> findIntersections(Ray ray) {
-		//if plane isn't intersected, obviously triangle too
+		
 		List<Point> intersections = plane.findIntersections(ray);
+		
+		//if plane isn't intersected, no need to check triangle
 		if (intersections == null)
 			return null;
 		
@@ -52,6 +54,7 @@ public class Triangle extends Polygon {
 		double t2 = vector.dotProduct(n2);
 		if (isZero(t2))
 			return null;
+		
 		double t3 = vector.dotProduct(n3);
 		if (isZero(t3))
 			return null;
