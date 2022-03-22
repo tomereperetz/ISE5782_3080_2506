@@ -48,6 +48,7 @@ public class Triangle extends Polygon {
 		double t1 = vector.dotProduct(n1);
 		if (isZero(t1))
 			return null;
+		
 		double t2 = vector.dotProduct(n2);
 		if (isZero(t2))
 			return null;
