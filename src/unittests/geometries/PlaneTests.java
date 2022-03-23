@@ -25,6 +25,7 @@ class PlaneTests {
     @Test
     void testPlane(){
         // =============== Boundary Values Tests ==================
+    	
         // Test 01: test 2 point on same spot
         assertThrows(IllegalArgumentException.class,()->new Plane(
                 new Point(0, 0, 1),
@@ -46,6 +47,7 @@ class PlaneTests {
 	@Test
 	void testGetNormal() {
 		// ============ Equivalence Partitions Tests ==============
+		
 		// TC01: There is a simple single test here
 		Plane p = new Plane(new Point(0, 0, 1),
 							new Point(1, 0, 0),
@@ -118,7 +120,7 @@ class PlaneTests {
         
         //TC16: ray begins at the reference point if the plane
         assertNull(plane.findIntersections(new Ray(
-        		new Point(2, 2, 2), new Vector(0, 1, 1))),
+        		new Point(1, 1, 1), new Vector(0, 1, 1))),
         		"ray begins at the plane"); 
 	}
 }

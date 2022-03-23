@@ -48,6 +48,7 @@ public class PolygonTests {
 				"Constructed a concave polygon");
 
 		// =============== Boundary Values Tests ==================
+		
 		// TC10: Vertex on a side of a quadrangular
 		assertThrows(IllegalArgumentException.class, //
 				() -> new Polygon(new Point(0, 0, 1), new Point(1, 0, 0), new Point(0, 1, 0), new Point(0, 0.5, 0.5)),
@@ -71,6 +72,7 @@ public class PolygonTests {
 	@Test
 	public void testGetNormal() {
 		// ============ Equivalence Partitions Tests ==============
+		
 		// TC01: There is a simple single test here
 		Polygon pl = new Polygon(new Point(0, 0, 1), new Point(1, 0, 0), new Point(0, 1, 0), new Point(-1, 1, 1));
 		double sqrt3 = Math.sqrt(1d / 3);

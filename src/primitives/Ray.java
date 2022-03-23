@@ -1,5 +1,7 @@
 package primitives;
 
+import static primitives.Util.*;
+
 /**
  * Class Ray is the basic class representing ray of Euclidean geometry in Cartesian
  * 3-Dimensional coordinate system.
@@ -43,7 +45,7 @@ public class Ray {
 	 * @return requested point
 	 */
 	public Point getPoint(double t) {
-		return this.p0.add(dir.scale(t));
+		return isZero(t) ? p0 : p0.add(dir.scale(t));
 	}
 	
 	@Override

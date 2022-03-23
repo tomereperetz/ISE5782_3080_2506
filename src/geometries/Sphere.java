@@ -12,6 +12,7 @@ import primitives.*;
 public class Sphere implements Geometry {
 	final private Point center;
 	final private double radius;
+	final private double radiusSqr;
 
 	@Override
 	public Vector getNormal(Point p) {
@@ -20,40 +21,33 @@ public class Sphere implements Geometry {
 
 	@Override
 	public List<Point> findIntersections(Ray ray) {
-		Point p0 = ray.getP0();
-		Vector v = ray.getDir();
-		
-		if (p0.equals(center)) {
-            return List.of(ray.getPoint(radius));
-        }
-		
-		Vector u = center.subtract(p0);
-		double tm = alignZero(v.dotProduct(u));
+		Vector u;
+		try {
+			u = center.subtract(ray.getP0());
+		} catch (IllegalArgumentException ignore) {
+			return List.of(ray.getPoint(radius));
+		}
 
-		double d = alignZero(Math.sqrt(u.lengthSquared() - tm * tm));
-		
-		if (d >= radius)
+		double tm = alignZero(ray.getDir().dotProduct(u));
+		double dSqr = alignZero(u.lengthSquared() - tm * tm);
+		double thSqr = radiusSqr - dSqr;
+
+		if (alignZero(thSqr) <= 0)
+			// The ray's line is either out of the sphere
+			// or it is tangent to the sphere
 			return null;
 
-		double th = alignZero(Math.sqrt(radius * radius - d * d));
+		double th = alignZero(Math.sqrt(thSqr));
 
-		double t1 = alignZero(tm + th);
-		double t2 = alignZero(tm - th);
+		double t2 = alignZero(tm + th);
+		if (t2 <= 0)
+			// the sphere is behind the ray head point
+			return null;
 
-		if (t1 > 0 && t2 > 0) {
-			Point p1 = ray.getPoint(t1);
-			Point p2 = ray.getPoint(t2);
-			return List.of(p1, p2);
-		}
-		if(t1 > 0) {
-			Point p1 = ray.getPoint(t1);
-			return List.of(p1);
-		}
-		if(t2 > 0) {
-			Point p2 = ray.getPoint(t2);
-			return List.of(p2);
-		}	
-		return null;
+		double t1 = alignZero(tm - th);
+		return t1 <= 0 //
+				? List.of(ray.getPoint(t2)) //
+				: List.of(ray.getPoint(t1), ray.getPoint(t2));
 	}
 
 	/**
@@ -65,6 +59,7 @@ public class Sphere implements Geometry {
 	public Sphere(Point p, double myRadius) {
 		center = p;
 		radius = myRadius;
+		radiusSqr = myRadius * myRadius;
 	}
 
 	/**

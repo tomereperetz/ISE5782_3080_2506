@@ -5,6 +5,8 @@ package unittests.geometries;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import geometries.Triangle;
@@ -24,6 +26,7 @@ class TriangleTests {
 	@Test
 	void testGetNormal() {
 		// ============ Equivalence Partitions Tests ==============
+		
 		// TC01: There is a simple single test here
 		double sqrt3 = Math.sqrt(1d / 3);
 		Triangle t = new Triangle(new Point(0, 0, 1),
@@ -38,11 +41,14 @@ class TriangleTests {
 		Triangle triangle = new Triangle(new Point(2, 0, 0), new Point(0, 2, 0),
 				new Point(0, 0, 2));
 		
-		// ============ Equivalence Partitions Tests ==============	
+		// ============ Equivalence Partitions Tests ==============
+		
 		//TC01: ray intersects plane in triangle
-        //assertEquals(new Point(0.66, 0.66, 0.66), triangle.findIntersections(
-        		//new Ray(new Point(3, 3, 0.66), new Vector(-1.66, -1.66, 0.66))), 
-        		//"intersection point is in the triangle");
+		Triangle triangle1 = new Triangle(new Point(1,1,0), new Point(2, 2, 0),
+				new Point(3, 1, 0));
+        assertEquals(List.of(new Point(2, 1.5, 0)), triangle1.findIntersections(
+        		new Ray(new Point(2, 0.5, -1), new Vector(0, 1, 1))), 
+        		"intersection point is in the triangle");
         
         //TC02: ray intersects plane outside the triangle, against edge
         assertNull(triangle.findIntersections(
@@ -55,6 +61,7 @@ class TriangleTests {
         		"intersection point is outside the triangle, against vertex");   
         
 		// ============ Boundary Values Partitions Tests ==============	
+        
         //TC10: ray intersects plane on edge
         assertNull(triangle.findIntersections(
         		new Ray(new Point(2, 0, -1), new Vector(0, 1, 1))),
