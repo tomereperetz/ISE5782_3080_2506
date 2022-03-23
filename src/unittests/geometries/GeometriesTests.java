@@ -57,4 +57,3 @@ public class GeometriesTests {
 				"wrong number of intersects");
 	}
 }
-
