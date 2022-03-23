@@ -13,6 +13,19 @@ public class Sphere implements Geometry {
 	final private Point center;
 	final private double radius;
 	final private double radiusSqr;
+	
+	/**
+	 * Constructor to initialize Sphere based object with its values
+	 * 
+	 * @param p        point
+	 * @param myRadius radius
+	 */
+	public Sphere(Point p, double myRadius) {
+		center = p;
+		radius = myRadius;
+		radiusSqr = myRadius * myRadius;
+	}
+
 
 	@Override
 	public Vector getNormal(Point p) {
@@ -50,17 +63,6 @@ public class Sphere implements Geometry {
 				: List.of(ray.getPoint(t1), ray.getPoint(t2));
 	}
 
-	/**
-	 * Constructor to initialize Sphere based object with its values
-	 * 
-	 * @param p        point
-	 * @param myRadius radius
-	 */
-	public Sphere(Point p, double myRadius) {
-		center = p;
-		radius = myRadius;
-		radiusSqr = myRadius * myRadius;
-	}
 
 	/**
 	 * get center if sphere point

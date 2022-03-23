@@ -19,10 +19,16 @@ class PointTests {
 	@Test
 	public void testDistancesquared() {
 		// ============= Equivalence Partitions Tests ==============
+		
 		// TC01: Only one simple test
 		Point p1 = new Point(1, 2, 3);
 		Point p2 = new Point(4, 5, 6);
 		assertEquals(27, p1.distanceSquared(p2), 0.00001, "ERROR: squared distance isn't proper");
+		
+		// ============= Boundary Values Tests ==============
+		
+		// TC10: Distance squared between point to itself
+		assertEquals(0, p1.distanceSquared(p1), "ERROR: squared distance isn't proper");	
 	}
 	
 	/**
@@ -31,10 +37,16 @@ class PointTests {
 	@Test
 	public void testDistance() {
 		// ============= Equivalence Partitions Tests ==============
+		
 		// TC01: Only one simple test
 		Point p1 = new Point(0, 2, 3);
 		Point p2 = new Point(0, 6, 6);
 		assertEquals(5, p1.distance(p2), 0.00001, "ERROR: distance isn't proper");
+		
+		// ============= Boundary Values Tests ==============
+		
+		// TC10: Distance between point to itself
+		assertEquals(0, p1.distanceSquared(p1), "ERROR: distance isn't proper");	
 	}
 
 	/**

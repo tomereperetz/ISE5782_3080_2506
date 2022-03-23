@@ -115,7 +115,7 @@ class PlaneTests {
         
         //TC15: ray begins at the plane
         assertNull(plane.findIntersections(new Ray(
-        		new Point(2, 2, 1), new Vector(3, 3, 2))),
+        		new Point(2, 1, 1), new Vector(3, 3, 2))),
         		"ray begins at the plane"); 
         
         //TC16: ray begins at the reference point if the plane
