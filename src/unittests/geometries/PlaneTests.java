@@ -7,9 +7,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import geometries.Plane;
-import primitives.Point;
-import primitives.Ray;
-import primitives.Vector;
+import primitives.*;
 
 /**
  * Unit tests for primitives.Plane class
