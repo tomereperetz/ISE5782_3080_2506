@@ -11,8 +11,6 @@ import renderer.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -34,12 +32,12 @@ public class IntegrationTests {
 
 		int count = 0;
 
-		// list of rays (one for each pixel)
+		// declare list for rays (one for each pixel)
 		List<Ray> myRays = new LinkedList<>();
 
 		// create ray for each pixel
 		for (int i = 0; i < 3; ++i)
-			for (int j = 0; j < 3; j++)
+			for (int j = 0; j < 3; ++j)
 				myRays.add(camera.constructRay(3, 3, i, j));
 		
 		// calculate number of intersections for each ray and sum it
@@ -86,9 +84,9 @@ public class IntegrationTests {
 		assertEquals(9, numOfIntersections(sphere, camera2), "ERROR: wrong number of intersection points");
 
 		// TC05: view plane before camera (no intersections)
-		//sphere = new Sphere(new Point(0, 0, 1), 5);
-		//assertNull(numOfIntersections(sphere, camera1), //
-				//"ERROR: wrong number of intersections");
+		sphere = new Sphere(new Point(0, 0, 1), 1);
+		assertEquals(0, numOfIntersections(sphere, camera1), //
+				"ERROR: wrong number of intersections");
 	}
 
 	/**
