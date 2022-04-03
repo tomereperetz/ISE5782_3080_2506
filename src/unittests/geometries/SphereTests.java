@@ -93,8 +93,8 @@ class SphereTests {
         result = sphere.findIntersections(new Ray(new Point(1, 2, 0),
                 new Vector(0, -1, 0)));
         
-        Point p3 = new Point(1, -1, 0);
-        Point p4 = new Point(1, 1, 0);
+        Point p3 = new Point(1, 1, 0);
+        Point p4 = new Point(1, -1, 0);
         
         assertEquals(2, result.size(), "Wrong number of points");
         

@@ -24,8 +24,8 @@ public class IntegrationTests {
 	/**
 	 * calculates number of intersections between a ray and a specific geometry
 	 * 
-	 * @param geometry - the geometry we want to intersect
-	 * @param camera   - the camera we want to test
+	 * @param  geometry - the geometry we want to intersect
+	 * @param  camera   - the camera we want to test
 	 * @return number of intersections
 	 */
 	int numOfIntersections(Geometry geometry, Camera camera) {

@@ -139,29 +139,18 @@ public class Camera {
 
 		Point Pc = p0.add(vTo.scale(distance));
 
-		double Ry = height / nY;
-		double Rx = height / nX;
+		double rY = height / nY;
+		double rX = height / nX;
 
-		double Yi = -(i - (nY - 1) / 2d) * Ry;
-		double Xj = (j - (nX - 1) / 2d) * Rx;
+		double yI = -(i - (nY - 1) / 2d) * rY;
+		double xJ = (j - (nX - 1) / 2d) * rX;
 
-		Point Pij = Pc;
+		Point pIJ = Pc;
+		if (xJ != 0)
+			pIJ = pIJ.add(vRight.scale(xJ));
+		if (yI != 0)
+			pIJ = pIJ.add(vUp.scale(yI));
 
-		if (Yi == 0 && Xj == 0) {
-			return new Ray(p0, Pij.subtract(p0));
-		}
-
-		if (Xj == 0) {
-			Pij = Pc.add(vUp.scale(Yi));
-			return new Ray(p0, Pij.subtract(p0));
-		}
-		
-		if (Yi == 0) {
-			Pij = Pc.add(vRight.scale(Xj));
-			return new Ray(p0, Pij.subtract(p0));
-		}
-
-		Pij = Pc.add(vRight.scale(Xj).add(vUp.scale(Yi)));
-		return new Ray(p0, Pij.subtract(p0));
+		return new Ray(p0, pIJ.subtract(p0));
 	}
 }
