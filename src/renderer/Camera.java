@@ -12,6 +12,7 @@ import static primitives.Util.*;
  * @author tomer and nitay
  */
 public class Camera {
+	
 	private Point p0;
 	private Vector vTo;
 	private Vector vUp;
