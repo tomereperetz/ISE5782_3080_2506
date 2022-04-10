@@ -3,8 +3,8 @@
  */
 package scene;
 
-import elements.AmbientLight;
 import geometries.Geometries;
+import lighting.AmbientLight;
 import primitives.Color;
 
 /**
@@ -23,7 +23,7 @@ public class Scene {
 	 * 
 	 * @param name of scene 
 	 */
-	Scene(String name) {
+	public Scene(String name) {
 		geometries = new Geometries();
 	}
 	

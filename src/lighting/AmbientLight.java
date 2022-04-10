@@ -1,7 +1,7 @@
 /**
  * 
  */
-package elements;
+package lighting;
 
 import primitives.Color;
 import primitives.Double3;
@@ -23,7 +23,7 @@ public class AmbientLight {
 	 * @param iA original light
 	 * @param kA discount factor
 	 */
-	AmbientLight(Color iA, Double3 kA){
+	public AmbientLight(Color iA, Double3 kA){
 		intensity = iA.scale(kA);
 	}
 	

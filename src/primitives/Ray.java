@@ -31,8 +31,12 @@ public class Ray {
 	 * @param  pointsList - list of points
 	 * @return closest point to ray's starting point
 	 */
-	Point findClosestPoint(List<Point> pointsList) {
-		double myDistance = 0;
+	public Point findClosestPoint(List<Point> pointsList) {
+		
+		if (pointsList.isEmpty())
+			return null;
+		
+		double myDistance = Double.POSITIVE_INFINITY;
 		Point retPoint = new Point(null);
 		
 		for (Point point : pointsList) {
