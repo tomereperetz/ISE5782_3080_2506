@@ -47,7 +47,7 @@ public class Scene {
 	}
 
 	/**
-	 * @param geometries the geometries to set
+	 * @param  geometries the geometries to set
 	 * @return this scene
 	 */
 	public Scene setGeometries(Geometries geometries) {

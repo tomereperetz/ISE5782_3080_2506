@@ -137,8 +137,8 @@ public class Camera {
 	 * @param rayTracerBase
 	 * @return this camera
 	 */
-	public Camera setRayTracerBase(RayTracerBase myraRayTracerBase) {
-		rayTracerBase = myraRayTracerBase;
+	public Camera setRayTracer(RayTracerBase myRayTracerBase) {
+		rayTracerBase = myRayTracerBase;
 		return this;
 	}
 

@@ -9,7 +9,7 @@ import primitives.*;
  * 
  * @author Nitay Kazimirsky and Tomer Peretz
  */
-public class Sphere implements Geometry {
+public class Sphere extends Geometry {
 	final private Point center;
 	final private double radius;
 	final private double radiusSqr;
@@ -32,36 +32,36 @@ public class Sphere implements Geometry {
 		return p.subtract(center).normalize();
 	}
 
-	@Override
-	public List<Point> findIntersections(Ray ray) {
-		Vector u;
-		try {
-			u = center.subtract(ray.getP0());
-		} catch (IllegalArgumentException ignore) {
-			return List.of(ray.getPoint(radius));
-		}
-
-		double tm = alignZero(ray.getDir().dotProduct(u));
-		double dSqr = alignZero(u.lengthSquared() - tm * tm);
-		double thSqr = radiusSqr - dSqr;
-
-		if (alignZero(thSqr) <= 0)
-			// The ray's line is either out of the sphere
-			// or it is tangent to the sphere
-			return null;
-
-		double th = alignZero(Math.sqrt(thSqr));
-
-		double t2 = alignZero(tm + th);
-		if (t2 <= 0)
-			// the sphere is behind the ray head point
-			return null;
-
-		double t1 = alignZero(tm - th);
-		return t1 <= 0 //
-				? List.of(ray.getPoint(t2)) //
-				: List.of(ray.getPoint(t1), ray.getPoint(t2));
-	}
+//	@Override
+//	public List<Point> findIntersections(Ray ray) {
+//		Vector u;
+//		try {
+//			u = center.subtract(ray.getP0());
+//		} catch (IllegalArgumentException ignore) {
+//			return List.of(ray.getPoint(radius));
+//		}
+//
+//		double tm = alignZero(ray.getDir().dotProduct(u));
+//		double dSqr = alignZero(u.lengthSquared() - tm * tm);
+//		double thSqr = radiusSqr - dSqr;
+//
+//		if (alignZero(thSqr) <= 0)
+//			// The ray's line is either out of the sphere
+//			// or it is tangent to the sphere
+//			return null;
+//
+//		double th = alignZero(Math.sqrt(thSqr));
+//
+//		double t2 = alignZero(tm + th);
+//		if (t2 <= 0)
+//			// the sphere is behind the ray head point
+//			return null;
+//
+//		double t1 = alignZero(tm - th);
+//		return t1 <= 0 //
+//				? List.of(ray.getPoint(t2)) //
+//				: List.of(ray.getPoint(t1), ray.getPoint(t2));
+//	}
 
 
 	/**

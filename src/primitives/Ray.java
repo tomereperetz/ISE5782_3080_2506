@@ -2,7 +2,10 @@ package primitives;
 
 import static primitives.Util.*;
 
+
 import java.util.List;
+
+import geometries.Intersectable.GeoPoint;
 
 /**
  * Class Ray is the basic class representing ray of Euclidean geometry in Cartesian
@@ -32,17 +35,29 @@ public class Ray {
 	 * @return closest point to ray's starting point
 	 */
 	public Point findClosestPoint(List<Point> pointsList) {
+		return pointsList == null || pointsList.isEmpty() ? null :
+			findClosestGeoPoint(pointsList.stream().map(
+					p -> new GeoPoint(null, p)).toList()).point;
+	}
+	
+	/**
+	 * TODO: documentation
+	 * 
+	 * @param  pointsList - list of geo-points
+	 * @return closest geo-point
+	 */
+	public GeoPoint findClosestGeoPoint(List<GeoPoint> pointsList) {
 		
-		if (pointsList.isEmpty())
+		if (pointsList == null)
 			return null;
 		
 		double myDistance = Double.POSITIVE_INFINITY;
-		Point retPoint = new Point(null);
+		GeoPoint retPoint = null;
 		
-		for (Point point : pointsList) {
-			if(p0.distance(point) < myDistance) {
-				retPoint = point;
-				myDistance = p0.distance(point);
+		for (GeoPoint myPoint : pointsList) {
+			if(myPoint.point.distance(p0) < myDistance) {
+				retPoint = myPoint;
+				myDistance = myPoint.point.distance(p0);
 			}
 		}
 		return retPoint;

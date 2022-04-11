@@ -16,7 +16,7 @@ import java.util.Collections;
  *  
  * @author Tomer Peretz and Nitay Kazimirsky
  */
-public class Geometries implements Intersectable {
+public class Geometries extends Intersectable {
 	private List<Intersectable> myGeometries;
 	
 	/**
@@ -45,18 +45,19 @@ public class Geometries implements Intersectable {
 		 Collections.addAll(myGeometries, geometries);
 	     }
 	
-	@Override
-	public List<Point> findIntersections(Ray ray) {
-        List<Point> result = null;
-		for (Intersectable geometry : myGeometries) {
-			List<Point> geoPoints = geometry.findIntersections(ray);
-			if (geoPoints != null) {
-				if (result == null) {
-					result = new LinkedList<>();
-		        	}
-				result.addAll(geoPoints);
-		    	}
-			}
-			return result;
-		}
+//	@Override
+//	public List<Point> findIntersections(Ray ray) {
+//        List<Point> result = null;
+//		for (Intersectable geometry : myGeometries) {
+//			List<Point> geoPoints = geometry.findIntersections(ray);
+//			if (geoPoints != null) {
+//				if (result == null) {
+//					result = new LinkedList<>();
+//		        	}
+//				result.addAll(geoPoints);
+//		    	}
+//			}
+//			return result;
+//		}
+	
 	}

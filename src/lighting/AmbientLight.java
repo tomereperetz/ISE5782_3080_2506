@@ -12,36 +12,25 @@ import primitives.Double3;
  * 
  * @author Nitay Kazimirsky and Tomer Peretz
 */
-public class AmbientLight {
+public class AmbientLight extends Light {
 	
-	private Color intensity;
-
 	/**
-	 * Constructor to initialize intensity field
+	 * Constructor to initialize color 
 	 * according to given formula
 	 * 
 	 * @param iA original light
 	 * @param kA discount factor
 	 */
 	public AmbientLight(Color iA, Double3 kA){
-		intensity = iA.scale(kA);
+		super(iA.scale(kA));
 	}
 	
 	/**
 	 * Default constructor to initialize intensity field
 	 * to black
-	 * 
 	 */	
 	AmbientLight() {
-		intensity = Color.BLACK;
+		super(Color.BLACK);
 	}
-	
-	/**
-	 * get intensity of light
-	 * 
-	 * @return intensity
-	 */
-	public Color getIntensity() {
-		return intensity;
-	}
+
 }
