@@ -37,7 +37,7 @@ public class RayTracerBasic extends RayTracerBase {
 	 * receives a point and calculate and returns
 	 * it's color
 	 * 
-	 * @param  p geo-point
+	 * @param  p geoPoint
 	 * @return color of pixel
 	 */
 	private Color calcColor(GeoPoint p) {

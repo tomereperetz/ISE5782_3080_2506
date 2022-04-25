@@ -34,6 +34,8 @@ public class Scene {
 	}
 		
 	/**
+	 * setter for background field
+	 * 
 	 * @param backGround the backGround to set
 	 * @return this scene
 	 */
@@ -43,6 +45,8 @@ public class Scene {
 	}
 
 	/**
+	 * setter for ambient light field
+	 * 
 	 * @param ambientLight the ambientLight to set
 	 * @return this scene
 	 */
@@ -52,6 +56,8 @@ public class Scene {
 	}
 
 	/**
+	 * setter for geometries field
+	 * 
 	 * @param  geometries the geometries to set
 	 * @return this scene
 	 */
@@ -61,6 +67,8 @@ public class Scene {
 	}
 
 	/**
+	 * getter for light field
+	 * 
 	 * @param light the light to set
 	 */
 	public void setLight(List<LightSource> myLights) {

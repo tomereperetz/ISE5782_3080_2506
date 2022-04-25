@@ -40,9 +40,9 @@ public class Ray {
 	}
 	
 	/**
-	 * TODO: documentation
+	 * Finds closest point to geometry from list of points
 	 * 
-	 * @param  pointsList - list of geo-points
+	 * @param  pointsList list of geo-points
 	 * @return closest geo-point
 	 */
 	public GeoPoint findClosestGeoPoint(List<GeoPoint> pointsList) {

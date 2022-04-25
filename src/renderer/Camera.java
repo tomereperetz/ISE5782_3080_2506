@@ -182,9 +182,11 @@ public class Camera {
 		return new Ray(p0, pIJ.subtract(p0));
 	}
 
+
 	/*
 	 * Check that all fields were properly initialized,
-	 * then create picture. 
+	 * then create picture.
+	 * @return this camera
 	 */
 	public Camera renderImage() {
 		
@@ -220,7 +222,7 @@ public class Camera {
 	 * @param  nX number of pixels (width)
 	 * @param  nY number of pixels (length)
 	 * @param  j  this pixel(row)
-	 * @param  i  this pixel (colomn)
+	 * @param  i  this pixel (column)
 	 * @return color of pixel
 	 */
 	private Color castRay(int nX, int nY, int j, int i) {	

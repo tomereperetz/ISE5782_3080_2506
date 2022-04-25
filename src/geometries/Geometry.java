@@ -45,6 +45,8 @@ public abstract class Geometry extends Intersectable {
 	}
 	
 	/**
+	 * getter for material field
+	 * 
 	 * @return the material
 	 */
 	public Material getMaterial() {
@@ -52,6 +54,8 @@ public abstract class Geometry extends Intersectable {
 	}
 
 	/**
+	 * setter for material field
+	 * 
 	 * @param material the material to set
 	 */
 	public Geometry setMaterial(Material material) {

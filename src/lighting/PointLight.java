@@ -8,8 +8,9 @@ import primitives.Point;
 import primitives.Vector;
 
 /**
- * @author tomer
- *
+ * Class PointLight includes necessary functionality for point light
+ * 
+ * @author Tomer and Nitay
  */
 public class PointLight extends Light implements LightSource {
 	private final Point position;
@@ -18,6 +19,8 @@ public class PointLight extends Light implements LightSource {
 	private double kQ = 0;
 	
 	/**
+	 * Constructs point light's intensity and position
+	 * 
 	 * @param myIntensity
 	 * @param position
 	 */
@@ -40,6 +43,8 @@ public class PointLight extends Light implements LightSource {
 	}
 	
 	/**
+	 * Setter for scalar Kc
+	 * 
 	 * @param kC the kC to set
 	 * @return updated point light itself
 	 */
@@ -49,6 +54,8 @@ public class PointLight extends Light implements LightSource {
 	}
 	
 	/**
+	 * Setter for scalar Kl
+	 * 
 	 * @param kL the kL to set
 	 * @return updated point light itself
 	 */
@@ -58,6 +65,8 @@ public class PointLight extends Light implements LightSource {
 	}
 	
 	/**
+	 * Setter for scalar Kq
+	 * 
 	 * @param kQ the kQ to set
 	 * @return updated point light itself
 	 */

@@ -6,22 +6,22 @@ package lighting;
 import primitives.*;
 
 /**
+ * Interface LightSource includes necessary functionality for light source 
  * 
- * 
- * @author nitay and tomer
+ * @author Nitay and Tomer
  */
 public interface LightSource {
 	/**
-	 * 
-	 * @param p
-	 * @return
+	 * getter for intensity
+	 * @param p point
+	 * @return Color intensity of color
 	 */
 	public Color getIntensity(Point p);
 	
 	/**
-	 * 
-	 * @param p
-	 * @return
+	 * getter for vector 
+	 * @param  p point
+	 * @return Vector 
 	 */
 	public Vector getL(Point p);
 }

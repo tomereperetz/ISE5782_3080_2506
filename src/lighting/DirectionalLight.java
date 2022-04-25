@@ -6,6 +6,7 @@ package lighting;
 import primitives.*;
 
 /**
+ * Class DirectionalLight includes necessary functionality for directional light  
  * 
  * @author Tomer and Nitay
  */

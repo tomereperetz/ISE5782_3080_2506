@@ -6,13 +6,16 @@ package lighting;
 import primitives.*;
 
 /**
- * @author tomer and nitay
- *
+ * Class Light includes necessary functionality for any kind of light 
+ * 
+ * @author Tomer and Nitay
  */
 abstract class Light {
 	protected final Color intensity;
 
 	/**
+	 * Constructs light's intensity
+	 * 
 	 * @param intensity
 	 */
 	protected Light(Color myIntensity) {
@@ -20,6 +23,8 @@ abstract class Light {
 	}
 
 	/**
+	 * getter for light intensity
+	 * 
 	 * @return the intensity
 	 */
 	public Color getIntensity() {

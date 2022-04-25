@@ -7,13 +7,16 @@ import primitives.*;
 import static primitives.Util.*;
 
 /**
- * @author tomer
- *
+ * Class SpotLight includes necessary functionality for spot light 
+ * 
+ * @author Tomer and Nitay
  */
 public class SpotLight extends PointLight {
 	private final Vector direction;
 
 	/**
+	 * Constructs spot light's intensity, position and direction vector
+	 * 
 	 * @param myIntensity
 	 * @param position
 	 * @param direction
