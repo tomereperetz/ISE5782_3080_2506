@@ -3,8 +3,12 @@
  */
 package scene;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import geometries.Geometries;
 import lighting.AmbientLight;
+import lighting.LightSource;
 import primitives.Color;
 
 /**
@@ -13,9 +17,11 @@ import primitives.Color;
  * @author Nitay Kazimirsky and Tomer Peretz
 */
 public class Scene {
-	public String name;
+	public final String name;
+	public Color backGround = Color.BLACK;
 	public AmbientLight ambientLight;
 	public Geometries geometries = new Geometries();
+	public List<LightSource> lights = new LinkedList<>();
 	
 	/**
 	 * Constructor to build an empty collection
@@ -24,15 +30,14 @@ public class Scene {
 	 * @param name of scene 
 	 */
 	public Scene(String name) {
-		geometries = new Geometries();
+		this.name= name;
 	}
-	
-	public Color backGround = Color.BLACK;
+		
 	/**
 	 * @param backGround the backGround to set
 	 * @return this scene
 	 */
-	public Scene setBackGround(Color backGround) {
+	public Scene setBackground(Color backGround) {
 		this.backGround = backGround;
 		return this;
 	}
@@ -53,6 +58,13 @@ public class Scene {
 	public Scene setGeometries(Geometries geometries) {
 		this.geometries = geometries;
 		return this;
+	}
+
+	/**
+	 * @param light the light to set
+	 */
+	public void setLight(List<LightSource> myLights) {
+		this.lights = myLights;
 	}
 
 }

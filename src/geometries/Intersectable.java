@@ -6,12 +6,10 @@ package geometries;
 import primitives.Point;
 import primitives.Ray;
 
-import java.awt.peer.DialogPeer;
 import java.util.List;
-import java.util.Objects;
 
 /**
- * Intersectable interface finds intersections between rays and geometries
+ * Class Intersectable finds intersections between rays and geometries
  * 
  * @author Tomer and Nitay
  *
@@ -27,35 +25,34 @@ public abstract class Intersectable {
 	 */
 	public List<Point> findIntersections(Ray ray) {
 		var geoList = findGeoIntersections(ray);
-		return geoList == null ? null :
-			geoList.stream().map(gp -> gp.point).toList();
+		return geoList == null ? null : geoList.stream().map(gp -> gp.point).toList();
 	}
-	
+
 	/**
-	 * TODO: documentation
-	 * @return
-	 */
-	public List<GeoPoint> findGeoIntersections(Ray myRay) {
-		return null;
-	}
-	
-	/**
-	 * TODO: documentation
+	 * finds intersections between ray and geometry
+	 * 
 	 * @param myRay
 	 * @return
 	 */
-	protected List<GeoPoint> findGeoIntersectionsHelper(Ray myRay) {
-		return null;
+	public List<GeoPoint> findGeoIntersections(Ray myRay) {
+		return findGeoIntersectionsHelper(myRay);
 	}
 
 	/**
-	 * An internal auxiliary class GeoPoint
+	 * finds intersections between ray and geometry
 	 * 
-	 * @author tomer and nitay
-	 *
+	 * @param myRay
+	 * @return
+	 */
+	protected abstract List<GeoPoint> findGeoIntersectionsHelper(Ray myRay);
+
+	/**
+	 * An internal auxiliary class GeoPoint containing a point on the surface of a
+	 * geometry and the geometry itself
+	 * 
+	 * @authors Tomer and Nitay
 	 */
 	public static class GeoPoint {
-
 		public Geometry geometry;
 		public Point point;
 
@@ -76,11 +73,9 @@ public abstract class Intersectable {
 				return true;
 			if (obj == null)
 				return false;
-			if (getClass() != obj.getClass())
+			if (!(obj instanceof GeoPoint other))
 				return false;
-			GeoPoint other = (GeoPoint) obj;
-			return Objects.equals(geometry, other.geometry) && //
-				   Objects.equals(point, other.point);
+			return geometry == other.geometry && point.equals(other.point);
 		}
 
 		@Override

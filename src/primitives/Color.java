@@ -45,7 +45,6 @@ public class Color {
 		rgb = new Double3(r, g, b);
 	}
 
-
 	/**
 	 * Constructor to generate a color according to RGB components Each component in
 	 * range 0..255 (for printed white color) or more [for lights]

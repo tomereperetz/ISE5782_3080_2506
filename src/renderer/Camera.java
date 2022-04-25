@@ -186,7 +186,7 @@ public class Camera {
 	 * Check that all fields were properly initialized,
 	 * then create picture. 
 	 */
-	public void renderImage() {
+	public Camera renderImage() {
 		
 		if (width == 0)
 			throw new MissingResourceException(
@@ -211,8 +211,8 @@ public class Camera {
 			for (int j = 0; j < nX; ++j)
 				imageWriter.writePixel(j, i, castRay(nX, nY, j, i));
 
+		return this;
 	}
-
 
 	/**
 	 * create ray and calculate color using ray tracer

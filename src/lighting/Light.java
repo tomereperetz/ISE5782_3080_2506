@@ -10,7 +10,7 @@ import primitives.*;
  *
  */
 abstract class Light {
-	private Color intensity;
+	protected final Color intensity;
 
 	/**
 	 * @param intensity

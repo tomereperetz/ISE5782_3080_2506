@@ -56,5 +56,10 @@ public class Tube extends Geometry {
 	public String toString() {
 		return "axis ray: " + axisRay.toString() + "\nradius " + radius;
 	}
+	
+	@Override
+	protected List<GeoPoint> findGeoIntersectionsHelper(Ray myRay) {
+		return null;
+	}
 
 }

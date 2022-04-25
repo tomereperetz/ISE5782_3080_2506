@@ -1,6 +1,7 @@
 package geometries;
 
 import java.util.List;
+
 import static primitives.Util.*;
 import primitives.*;
 
@@ -56,37 +57,35 @@ public class Plane extends Geometry {
 		return normal;
 	}
 
-//	@Override
-//	public List<Point> findIntersections(Ray ray) {
-//		Point myPoint = ray.getP0();
-//		Vector myVector = ray.getDir();
-//
-//		Vector u;
-//		try {
-//			u = p0.subtract(myPoint);
-//		} catch (IllegalArgumentException ignore) {
-//			// ray starts at plane (0 points)
-//			return null;
-//		}
-//
-//		// denominator
-//		double nv = normal.dotProduct(myVector);
-//		// ray is lying in the plane axis
-//		if (isZero(nv)) {
-//			return null;
-//		}
-//
-//		// numerator
-//		double t = alignZero(alignZero(normal.dotProduct(u)) / nv);
-//		return t <= 0 ? null : List.of(ray.getPoint(t));
-//	}
+	@Override
+	protected List<GeoPoint> findGeoIntersectionsHelper(Ray myRay) {
+		Point myPoint = myRay.getP0();
+		Vector myVector = myRay.getDir();
 
+		Vector u;
+		try {
+			u = p0.subtract(myPoint);
+		} catch (IllegalArgumentException ignore) {
+			// ray starts at plane (0 points)
+			return null;
+		}
+
+		// denominator
+		double nv = normal.dotProduct(myVector);
+		// ray is lying in the plane axis
+		if (isZero(nv)) {
+			return null;
+		}
+
+		// numerator
+		double t = alignZero(alignZero(normal.dotProduct(u)) / nv);
+		return t <= 0 ? null : List.of(new GeoPoint(this, myRay.getPoint(t)));
+	}
+	
 	@Override
 	public Vector getNormal(Point p) {
 		return normal;
 	}
-	
-	
 
 	@Override
 	public String toString() {

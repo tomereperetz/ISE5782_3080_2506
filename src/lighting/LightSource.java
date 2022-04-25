@@ -3,10 +3,7 @@
  */
 package lighting;
 
-import java.awt.Color;
-import java.awt.Point;
-
-import primitives.Vector;
+import primitives.*;
 
 /**
  * 

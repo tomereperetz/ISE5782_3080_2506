@@ -2,7 +2,6 @@ package primitives;
 
 import static primitives.Util.*;
 
-
 import java.util.List;
 
 import geometries.Intersectable.GeoPoint;
@@ -78,7 +77,7 @@ public class Ray {
 	public Vector getDir() {
 		return dir;
 	}
-
+	
 	/**
 	 * get point on ray
 	 * 

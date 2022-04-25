@@ -24,10 +24,9 @@ public class AmbientLight extends Light {
 	public AmbientLight(Color iA, Double3 kA){
 		super(iA.scale(kA));
 	}
-	
+
 	/**
-	 * Default constructor to initialize intensity field
-	 * to black
+	 * Constructs ambient light with complete darkness
 	 */	
 	AmbientLight() {
 		super(Color.BLACK);
