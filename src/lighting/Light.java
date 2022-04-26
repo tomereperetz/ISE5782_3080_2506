@@ -21,6 +21,7 @@ abstract class Light {
 	protected Light(Color myIntensity) {
 		intensity = myIntensity;
 	}
+	
 
 	/**
 	 * getter for light intensity

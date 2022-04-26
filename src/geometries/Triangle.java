@@ -26,7 +26,7 @@ public class Triangle extends Polygon {
 	@Override
 	public List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
 
-		List<GeoPoint> intersections = plane.findGeoIntersectionsHelper(ray);
+		List<GeoPoint> intersections = this.findGeoIntersectionsHelper(ray);
 		// if plane isn't intersected, no need to check triangle
 		if (intersections == null)
 			return null;

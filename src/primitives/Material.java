@@ -1,11 +1,8 @@
-/**
- * 
- */
 package primitives;
 
 /**
- * @author tomer
- *
+ * Class Material includes representation and 
+ * necessary functionality for different materials
  */
 public class Material {
 	public Double3 kD = Double3.ZERO;
@@ -26,7 +23,6 @@ public class Material {
 
 	/**
 	 * Setter for scalar Ks
-	 * 
 	 * @param kS the kS to 
 	 * @return this material
 	 */
@@ -37,7 +33,6 @@ public class Material {
 
 	/**
 	 * Setter for shininess
-	 * 
 	 * @param nShininess the nShininess to set
 	 * @return this material
 	 */
@@ -48,7 +43,6 @@ public class Material {
 
 	/**
 	 * Setter for scalar Kd
-	 * 
 	 * @param kD the kD to set
 	 * @return this material
 	 */
@@ -60,7 +54,6 @@ public class Material {
 
 	/**
 	 * Setter for scalar Ks 
-	 * 
 	 * @param kS the kS to set
 	 * @return this material
 	 */

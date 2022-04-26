@@ -13,6 +13,13 @@ import primitives.Double3;
  * @author Nitay Kazimirsky and Tomer Peretz
 */
 public class AmbientLight extends Light {
+
+	/**
+	 * Constructs ambient light with complete darkness
+	 */	
+	AmbientLight() {
+		super(Color.BLACK);
+	}
 	
 	/**
 	 * Constructor to initialize color 
@@ -23,13 +30,6 @@ public class AmbientLight extends Light {
 	 */
 	public AmbientLight(Color iA, Double3 kA){
 		super(iA.scale(kA));
-	}
-
-	/**
-	 * Constructs ambient light with complete darkness
-	 */	
-	AmbientLight() {
-		super(Color.BLACK);
 	}
 
 }

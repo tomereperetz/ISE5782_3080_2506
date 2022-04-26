@@ -1,9 +1,6 @@
 package geometries;
 
-import primitives.Color;
-import primitives.Material;
-import primitives.Point;
-import primitives.Vector;
+import primitives.*;
 
 /**
  * Geometry class includes all non-primitives geometries
@@ -36,11 +33,11 @@ public abstract class Geometry extends Intersectable {
 	/**
 	 * Setter function for emission
 	 * 
-	 * @param  emmision - geometry's emission
+	 * @param  emission - geometry's emission
 	 * @return this object
 	 */
-	public Geometry setEmission(Color emmision) {
-		this.emission = emmision;
+	public Geometry setEmission(Color emission) {
+		this.emission = emission;
 		return this;
 	}
 	
