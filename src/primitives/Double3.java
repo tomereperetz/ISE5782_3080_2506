@@ -98,6 +98,16 @@ public class Double3 {
 	public Double3 scale(double rhs) {
 		return new Double3(d1 * rhs, d2 * rhs, d3 * rhs);
 	}
+	
+	/**
+	 * Scale (multiply) double3 triad by a number
+	 * 
+	 * @param rhs right handle side operand for scaling
+	 * @return result of scale
+	 */
+	public Double3 scale(Double3 rhs) {
+		return new Double3(d1 * rhs.d1, d2 * rhs.d2, d3 * rhs.d3);
+	}
 
 	/**
 	 * Reduce (divide) floating point triad by a number into a new triad where each

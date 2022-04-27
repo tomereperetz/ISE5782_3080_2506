@@ -3,10 +3,6 @@
  */
 package renderer;
 
-import java.awt.font.GlyphVector;
-
-import org.junit.Ignore;
-
 import geometries.Intersectable.GeoPoint;
 import lighting.LightSource;
 import primitives.*;
@@ -44,7 +40,9 @@ public class RayTracerBasic extends RayTracerBase {
 	 * @param intersection geoPoint
 	 * @return color of pixel
 	 */
-	private Color calcColor(GeoPoint intersection, Ray ray) {// Phong lighting model:
+	private Color calcColor(GeoPoint intersection, Ray ray) {
+		if(scene.ambientLight == null)
+			return intersection.geometry.getEmission().add(calcLocalEffects(intersection, ray));// Phong lighting model:
 		return scene.ambientLight.getIntensity(). // ambient light +
 				add(intersection.geometry.getEmission()). // emission light +
 				add(calcLocalEffects(intersection, ray)); // local effects (diffusion + specular)
@@ -82,18 +80,20 @@ public class RayTracerBasic extends RayTracerBase {
 
 	/**
 	 * Calculates the diffusive factor of light
+	 * 
 	 * @param kd
 	 * @param l
 	 * @param lightIntensity
 	 * @return color the calculated color (after diffusion)
 	 */
 	private Color calcDiffusive(Double3 kd, Vector l, Vector n, Color lightIntensity) {
-		Double3 factor = kd * Math.abs(l.dotProduct(n));
-        return lightIntensity.scale(factor);
+		Double3 factor = kd.scale(Math.abs(l.dotProduct(n)));
+		return lightIntensity.scale(factor);
 	}
-	
+
 	/**
 	 * Calculates the specular factor of light
+	 * 
 	 * @param ks
 	 * @param l
 	 * @param n
@@ -104,8 +104,8 @@ public class RayTracerBasic extends RayTracerBase {
 	 */
 	private Color calcSpecular(Double3 ks, Vector l, Vector n, Vector v, int nShininess, Color lightIntensity) {
 		Vector r = l.subtract(n.scale(2 * l.dotProduct(n)));
-        double minusVr = v.dotProduct(r) * -1;
-        return lightIntensity.scale(ks * Math.pow(Math.max(0, minusVr), nShininess));
+		double minusVr = v.dotProduct(r) * -1;
+		return lightIntensity.scale(ks.scale(Math.pow(Math.max(0, minusVr), nShininess)));
 	}
 
 }

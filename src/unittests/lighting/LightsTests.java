@@ -161,5 +161,42 @@ public class LightsTests {
 //				.renderImage() //
 //				.writeToImage(); //
 //	}
+	
+	/**
+	 * Produce a picture of a two triangles lighted by both spot and directional light
+	 */
+	@Test
+	public void trianglesAllLightSources() {
+		scene2.geometries.add(triangle1, triangle2);
+		scene2.lights.add(new SpotLight(trCL, trPL, trDL).setKl(0.001).setKq(0.0001));
+		scene2.lights.add(new PointLight(spCL, spPL).setKl(0.001).setKq(0.0002));
+		scene2.lights.add(new DirectionalLight(spCL, new Vector(1, 1, -0.5)));
+		
+
+		ImageWriter imageWriter = new ImageWriter("lightTrianglesAllKinds", 500, 500);
+		camera2.setImageWriter(imageWriter) //
+				.setRayTracer(new RayTracerBasic(scene2)) //
+				.renderImage() //
+				.writeToImage(); //
+	}
+	
+	/**
+	 * Produce a picture of a two triangles lighted by both spot and directional light
+	 */
+	@Test
+	public void sphereAllLightSources() {
+		scene2.geometries.add(sphere);
+		scene2.lights.add(new SpotLight(trCL, trPL, trDL).setKl(0.001).setKq(0.0001));
+		scene2.lights.add(new PointLight(spCL, spPL).setKl(0.001).setKq(0.0002));
+		scene2.lights.add(new DirectionalLight(spCL, new Vector(1, 1, -0.5)));
+		
+
+		ImageWriter imageWriter = new ImageWriter("lightSphereAllKinds", 500, 500);
+		camera2.setImageWriter(imageWriter) //
+				.setRayTracer(new RayTracerBasic(scene2)) //
+				.renderImage() //
+				.writeToImage(); //
+	}
+
 
 }
