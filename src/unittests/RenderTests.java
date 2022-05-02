@@ -45,7 +45,6 @@ public class RenderTests {
 		camera.writeToImage();
 	}
 
-	// For stage 6 - please disregard in stage 5
 	/**
 	 * Produce a scene with basic 3D model - including individual lights of the
 	 * bodies and render it into a png image with a grid
@@ -74,7 +73,7 @@ public class RenderTests {
 				.setRayTracer(new RayTracerBasic(scene));
 
 		camera.renderImage();
-		camera.printGrid(100, new Color(BLUE));
+		camera.printGrid(100, new Color(WHITE));
 		camera.writeToImage();
 	}
 

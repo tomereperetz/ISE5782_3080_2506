@@ -9,6 +9,8 @@ import primitives.*;
 import scene.Scene;
 import static primitives.Util.*;
 
+import java.util.List;
+
 /**
  * RayTracerBasic class inherits RayTracerBase abstract class and implements
  * it's abstract method
@@ -17,7 +19,11 @@ import static primitives.Util.*;
  *
  */
 public class RayTracerBasic extends RayTracerBase {
-
+	/*
+	 * Constant variable DELTA for size of movement of rays head
+	 */
+	private static final double DELTA = 0.1;
+	
 	/**
 	 * Constructor which enables father constructor
 	 * 
@@ -42,8 +48,8 @@ public class RayTracerBasic extends RayTracerBase {
 	 */
 	private Color calcColor(GeoPoint intersection, Ray ray) {
 		if(scene.ambientLight == null)
-			return intersection.geometry.getEmission().add(calcLocalEffects(intersection, ray));// Phong lighting model:
-		return scene.ambientLight.getIntensity(). // ambient light +
+			return intersection.geometry.getEmission().add(calcLocalEffects(intersection, ray));
+		return scene.ambientLight.getIntensity(). 		  // Phong lighting model: ambient light +
 				add(intersection.geometry.getEmission()). // emission light +
 				add(calcLocalEffects(intersection, ray)); // local effects (diffusion + specular)
 	}
@@ -107,6 +113,22 @@ public class RayTracerBasic extends RayTracerBase {
 		Vector r = l.normalize().subtract(n.normalize().scale(2 * l.dotProduct(n))).normalize();
 		double minusVr = v.normalize().dotProduct(r.normalize()) * -1;
 		return lightIntensity.scale(ks.scale(Math.pow(Math.max(0, minusVr), nShininess)));
+	}
+	
+	/**
+	 * Calculates and determines if a point is shaded by light source  
+	 * 
+	 * @param gp point to be determined
+	 * @param l vector from light to point
+	 * @param n  normal vector
+	 * @return is shaded (boolean)
+	 */
+	private boolean unShaded(GeoPoint gp, Vector l, Vector n) {
+		Vector lightDirection = l.scale(-1);
+		Ray lightRay = new Ray(gp.point, lightDirection);
+		
+		List<GeoPoint> intersections = scene.geometries.findGeoIntersections(lightRay);
+		return intersections.isEmpty();
 	}
 
 }
