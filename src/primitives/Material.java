@@ -32,21 +32,11 @@ public class Material {
 	}
 
 	/**
-	 * Setter for shininess
-	 * @param nShininess the nShininess to set
-	 * @return this material
-	 */
-	public Material setShininess(int nShininess) {
-		this.nShininess = nShininess;
-		return this;
-	}
-
-	/**
 	 * Setter for scalar Kd
 	 * @param kD the kD to set
 	 * @return this material
 	 */
-	public Material setKd(Double kD) {
+	public Material setKd(double kD) {
 		this.kD = new Double3(kD);
 		return this;
 
@@ -57,8 +47,18 @@ public class Material {
 	 * @param kS the kS to set
 	 * @return this material
 	 */
-	public Material setKs(Double kS) {
+	public Material setKs(double kS) {
 		this.kS = new Double3(kS);
+		return this;
+	}
+	
+	/**
+	 * Setter for shininess
+	 * @param nShininess the nShininess to set
+	 * @return this material
+	 */
+	public Material setShininess(int nShininess) {
+		this.nShininess = nShininess;
 		return this;
 	}
 }

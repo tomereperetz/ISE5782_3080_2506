@@ -57,13 +57,14 @@ public class RayTracerBasic extends RayTracerBase {
 	 */
 	private Color calcLocalEffects(GeoPoint intersection, Ray ray) {
 		Vector v = ray.getDir();
-		Vector n = intersection.geometry.getNormal(v);
+		Vector n = intersection.geometry.getNormal(intersection.point);
 		double nv = alignZero(n.dotProduct(v));
 		if (nv == 0)
 			return Color.BLACK;
-		int nShininess = intersection.geometry.getMaterial().nShininess;
-		Double3 kd = intersection.geometry.getMaterial().kD;
-		Double3 ks = intersection.geometry.getMaterial().kS;
+		Material material = intersection.geometry.getMaterial();
+		int nShininess = material.nShininess;
+		Double3 kd = material.kD;
+		Double3 ks = material.kS;
 
 		Color color = Color.BLACK;
 		for (LightSource lightSource : scene.lights) {
@@ -72,7 +73,7 @@ public class RayTracerBasic extends RayTracerBase {
 			if (nl * nv > 0) {
 				Color lightIntensity = lightSource.getIntensity(intersection.point);
 				color = color.add(calcDiffusive(kd, l, n, lightIntensity),
-						calcSpecular(ks, l, v, n, nShininess, lightIntensity));
+						calcSpecular(ks, l, n, v, nShininess, lightIntensity));
 			}
 		}
 		return color;
@@ -87,7 +88,7 @@ public class RayTracerBasic extends RayTracerBase {
 	 * @return color the calculated color (after diffusion)
 	 */
 	private Color calcDiffusive(Double3 kd, Vector l, Vector n, Color lightIntensity) {
-		Double3 factor = kd.scale(Math.abs(l.dotProduct(n)));
+		Double3 factor = kd.scale(Math.abs(l.normalize().dotProduct(n.normalize())));
 		return lightIntensity.scale(factor);
 	}
 
@@ -103,8 +104,8 @@ public class RayTracerBasic extends RayTracerBase {
 	 * @return color the calculated color (after speculation)
 	 */
 	private Color calcSpecular(Double3 ks, Vector l, Vector n, Vector v, int nShininess, Color lightIntensity) {
-		Vector r = l.subtract(n.scale(2 * l.dotProduct(n)));
-		double minusVr = v.dotProduct(r) * -1;
+		Vector r = l.normalize().subtract(n.normalize().scale(2 * l.dotProduct(n))).normalize();
+		double minusVr = v.normalize().dotProduct(r.normalize()) * -1;
 		return lightIntensity.scale(ks.scale(Math.pow(Math.max(0, minusVr), nShininess)));
 	}
 

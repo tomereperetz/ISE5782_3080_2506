@@ -53,6 +53,12 @@ public class Triangle extends Polygon {
 		if (t1 * t3 <= 0)
 			return null;
 
-		return intersections;
+		// return triangle intersections (rather than plane's)
+		List<GeoPoint> myIntersections = List.of(new GeoPoint(this, intersections.get(0).point));
+		for (int i = 1; i < intersections.size(); i++) {
+			myIntersections.add(new GeoPoint(this, intersections.get(i).point));
+		}
+		
+		return myIntersections;
 	}
 }

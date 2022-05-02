@@ -13,7 +13,7 @@ import static primitives.Util.*;
  */
 public class SpotLight extends PointLight {
 	private final Vector direction;
-
+	private double narrowBeam;
 	/**
 	 * Constructs spot light's intensity, position and direction vector
 	 * 
@@ -36,4 +36,16 @@ public class SpotLight extends PointLight {
 		double cosTheta = alignZero(direction.dotProduct(getL(p)));
 		return cosTheta <= 0 ? Color.BLACK : super.getIntensity(p).scale(cosTheta);
 	}
+	
+	/**
+	 * Setter for scalar narrowBeam
+	 * 
+	 * @param myNarrowBeam
+	 * @return updated point light itself
+	 */
+	public PointLight setNarrowBeam(double myNarrowBeam) {
+		this.narrowBeam = myNarrowBeam;
+		return this;
+	}
+	
 }

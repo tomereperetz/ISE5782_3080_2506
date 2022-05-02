@@ -67,12 +67,14 @@ public class Scene {
 	}
 
 	/**
-	 * getter for light field
+	 * Setter for lights field
 	 * 
-	 * @param light the light to set
+	 * @param myLights the list of lights to set
+	 * @return this scene
 	 */
-	public void setLight(List<LightSource> myLights) {
+	public Scene setLights(List<LightSource> myLights) {
 		this.lights = myLights;
+		return this;
 	}
 
 }
