@@ -21,8 +21,8 @@ public class PointLight extends Light implements LightSource {
 	/**
 	 * Constructs point light's intensity and position
 	 * 
-	 * @param myIntensity
-	 * @param position
+	 * @param myIntensity intensity
+	 * @param position of light source
 	 */
 	public PointLight(Color myIntensity, Point position) {
 		super(myIntensity);
@@ -36,10 +36,8 @@ public class PointLight extends Light implements LightSource {
 	
 	@Override
 	public Color getIntensity(Point p) {
-		double denominator, distance;
-		distance = position.distance(p);
-		denominator = kC + kL * distance + kQ * distance * distance;
-		return getIntensity().reduce(denominator);
+		double distanceSquared = position.distanceSquared(p);
+		return intensity.reduce(kC + kL * Math.sqrt(distanceSquared) + kQ * distanceSquared);
 	}
 	
 	/**
@@ -73,6 +71,11 @@ public class PointLight extends Light implements LightSource {
 	public PointLight setKq(double kQ) {
 		this.kQ = kQ;
 		return this;
+	}
+	
+	@Override
+	public double getDistance(Point point) {
+		return point.distance(position);
 	}
 
 }

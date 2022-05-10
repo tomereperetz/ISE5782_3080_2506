@@ -5,17 +5,27 @@ package primitives;
  * necessary functionality for different materials
  */
 public class Material {
+	public int nShininess = 0;
 	public Double3 kD = Double3.ZERO;
 	public Double3 kS = Double3.ZERO;
-	public int nShininess = 0;
 
+	/*
+	 * Transparency coefficient 
+	 */
+	public Double3 kT = Double3.ZERO;
+	
+	/*
+	 * Reflection coefficient
+	 */
+	public Double3 kR = Double3.ZERO;
+	
 	/**
 	 * Setter for scalar Kd
 	 * 
 	 * @param kD the kD to set
 	 * @return this material
 	 */
-	public Material setkd(Double3 kD) {
+	public Material setKd(Double3 kD) {
 		this.kD = kD;
 		return this;
 
@@ -59,6 +69,47 @@ public class Material {
 	 */
 	public Material setShininess(int nShininess) {
 		this.nShininess = nShininess;
+		return this;
+	}
+	
+	/**
+	 * Setter for transparency coefficient 
+	 * @param kT the kT to set
+	 * @return this material
+	 */
+	public Material setKt(Double3 kT) {
+		this.kT = kT;
+		return this;
+	}
+
+	/**
+	 * Setter for reflection coefficient
+	 * @param kR the kR to set
+	 * @return this material
+	 */
+	public Material setKr(Double3 kR) {
+		this.kR = kR;
+		return this;
+	}
+	
+	
+	/**
+	 * Setter for transparency coefficient 
+	 * @param kT the kT to set
+	 * @return this material
+	 */
+	public Material setKt(double kT) {
+		this.kT = new Double3(kT);
+		return this;
+	}
+
+	/**
+	 * Setter for reflection coefficient
+	 * @param kR the kR to set
+	 * @return this material
+	 */
+	public Material setKr(double kR) {
+		this.kR = new Double3(kR);
 		return this;
 	}
 }

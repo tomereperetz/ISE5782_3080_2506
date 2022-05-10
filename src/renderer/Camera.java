@@ -110,8 +110,8 @@ public class Camera {
 	/**
 	 * set plane's location (width and height)
 	 * 
-	 * @param myWidth  - plane's width
-	 * @param myHeight - plane's height
+	 * @param myWidth  plane's width
+	 * @param myHeight plane's height
 	 * @return this camera
 	 */
 	public Camera setVPSize(double myWidth, double myHeight) {
@@ -123,7 +123,7 @@ public class Camera {
 	/**
 	 * set plane's location (distance)
 	 * 
-	 * @param myDistance - plane's distance
+	 * @param myDistance plane's distance
 	 * @return this camera
 	 */
 	public Camera setVPDistance(double myDistance) {
@@ -134,7 +134,7 @@ public class Camera {
 	/**
 	 * set RayTracerBase
 	 * 
-	 * @param rayTracerBase
+	 * @param myRayTracerBase ray tracer
 	 * @return this camera
 	 */
 	public Camera setRayTracer(RayTracerBase myRayTracerBase) {
@@ -145,7 +145,7 @@ public class Camera {
 	/**
 	 * set imageWriter
 	 * 
-	 * @param imageWriter
+	 * @param myImageWriter image writer
 	 * @return this camera
 	 */
 	public Camera setImageWriter(ImageWriter myImageWriter) {
@@ -182,33 +182,26 @@ public class Camera {
 		return new Ray(p0, pIJ.subtract(p0));
 	}
 
-
 	/*
-	 * Check that all fields were properly initialized,
-	 * then create picture.
-	 * @return this camera
+	 * Check that all fields were properly initialized, then create picture.
+	 * return this camera
 	 */
 	public Camera renderImage() {
-		
+
 		if (width == 0)
-			throw new MissingResourceException(
-					"fields aren't properly initialized", "Camera", "width");
+			throw new MissingResourceException("fields aren't properly initialized", "Camera", "width");
 		if (height == 0)
-			throw new MissingResourceException(
-					"fields aren't properly initialized", "Camera", "height");
+			throw new MissingResourceException("fields aren't properly initialized", "Camera", "height");
 		if (distance == 0)
-			throw new MissingResourceException(
-					"fields aren't properly initialized", "Camera", "distance");
+			throw new MissingResourceException("fields aren't properly initialized", "Camera", "distance");
 		if (imageWriter == null)
-			throw new MissingResourceException(
-					"fields aren't properly initialized", "Camera", "imageWriter");
+			throw new MissingResourceException("fields aren't properly initialized", "Camera", "imageWriter");
 		if (rayTracerBase == null)
-			throw new MissingResourceException(
-					"fields aren't properly initialized", "Camera", "rayTracerBase");
-		
+			throw new MissingResourceException("fields aren't properly initialized", "Camera", "rayTracerBase");
+
 		int nX = imageWriter.getNx();
 		int nY = imageWriter.getNy();
-		
+
 		for (int i = 0; i < nY; ++i)
 			for (int j = 0; j < nX; ++j)
 				imageWriter.writePixel(j, i, castRay(nX, nY, j, i));
@@ -219,13 +212,13 @@ public class Camera {
 	/**
 	 * create ray and calculate color using ray tracer
 	 * 
-	 * @param  nX number of pixels (width)
-	 * @param  nY number of pixels (length)
-	 * @param  j  this pixel(row)
-	 * @param  i  this pixel (column)
+	 * @param nX number of pixels (width)
+	 * @param nY number of pixels (length)
+	 * @param j  this pixel(row)
+	 * @param i  this pixel (column)
 	 * @return color of pixel
 	 */
-	private Color castRay(int nX, int nY, int j, int i) {	
+	private Color castRay(int nX, int nY, int j, int i) {
 		Ray ray = constructRay(nX, nY, j, i);
 		return rayTracerBase.traceRay(ray);
 	}

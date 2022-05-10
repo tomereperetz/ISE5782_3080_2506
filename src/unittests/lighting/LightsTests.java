@@ -146,6 +146,22 @@ public class LightsTests {
 				.renderImage() //
 				.writeToImage(); //
 	}
+	
+	/**
+	 * Produce a picture of a triangles lighted by a narrow spot light
+	 */
+	@Test
+	public void trianglesSpotSharp() {
+		scene2.geometries.add(triangle1, triangle2);
+		scene2.lights.add(new SpotLight(trCL, trPL, trDL).setNarrowBeam(10).setKl(0.001).setKq(0.0001));
+
+		ImageWriter imageWriter = new ImageWriter("lightTrianglesSpotSharp", 500, 500);
+		camera2.setImageWriter(imageWriter) //
+				.setRayTracer(new RayTracerBasic(scene2)) //
+				.renderImage() //
+				.writeToImage(); //
+	}
+
 
 	/**
 	 * Produce a picture of a two triangles lighted by both spot and directional
@@ -167,7 +183,7 @@ public class LightsTests {
 	}
 
 	/**
-	 * Produce a picture of a two triangles lighted by a narrow spot light
+	 * Produce a picture of a two triangles lighted by multiple light sources
 	 */
 	@Test
 	public void triangleMultipleLights() {

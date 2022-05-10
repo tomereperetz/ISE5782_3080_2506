@@ -30,19 +30,20 @@ public class Geometries extends Intersectable {
 	 * @param geometry
 	 */
 	public void add(Intersectable... geometries) {
-		if (geometries.length != 0) Collections.addAll(myGeometries, geometries);
+		if (geometries.length != 0)
+			Collections.addAll(myGeometries, geometries);
 	}
 
 	@Override
 	public List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
 		List<GeoPoint> result = null;
 		for (Intersectable geometry : myGeometries) {
-			List<GeoPoint> geoPoints = geometry.findGeoIntersectionsHelper(ray);
+			List<GeoPoint> geoPoints = geometry.findGeoIntersections(ray);
 			if (geoPoints != null) {
-				if (result == null) {
-					result = new LinkedList<>();
-				}
-				result.addAll(geoPoints);
+				if (result == null)
+					result = new LinkedList<>(geoPoints);
+				else
+					result.addAll(geoPoints);
 			}
 		}
 		return result;

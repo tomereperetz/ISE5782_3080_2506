@@ -9,10 +9,6 @@ package primitives;
  * @author Dan Zilberstein
  */
 public class Color {
-	public static Color getBlack() {
-		return BLACK;
-	}
-
 	/**
 	 * The internal fields tx`o maintain RGB components as double numbers from 0 to
 	 * whatever...
@@ -44,6 +40,7 @@ public class Color {
 			throw new IllegalArgumentException("Negative color component is illegal");
 		rgb = new Double3(r, g, b);
 	}
+
 
 	/**
 	 * Constructor to generate a color according to RGB components Each component in
@@ -145,4 +142,8 @@ public class Color {
 		return new Color(rgb.d1 / k.d1, rgb.d2 / k.d2, rgb.d3 / k.d3);
 	}
 
+	@Override
+	public String toString() {
+		return "rgb:" + rgb;
+	}
 }

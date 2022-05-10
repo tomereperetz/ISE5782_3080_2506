@@ -16,7 +16,7 @@ abstract class Light {
 	/**
 	 * Constructs light's intensity
 	 * 
-	 * @param intensity
+	 * @param myIntensity intensity
 	 */
 	protected Light(Color myIntensity) {
 		intensity = myIntensity;

@@ -58,7 +58,7 @@ public class Vector extends Point {
 	/**
 	 * receives a scalar and multiplies the scalar by each coordinate of the vector
 	 * 
-	 * @param scalar
+	 * @param scalar to multiple
 	 * @return new vector 
 	 */
 	public Vector scale(double scalar) {
@@ -116,14 +116,14 @@ public class Vector extends Point {
 			   this.xyz.d2 * v.xyz.d2 +
 			   this.xyz.d3 * v.xyz.d3;
 	}
-	/**
-	 * receives a double3 and multiplies the double3 by each coordinate of the vector
-	 * 
-	 * @param scalar
-	 * @return new vector 
-	 */
-	public Vector scale(Double3 myDouble3) {
-		return new Vector(this.xyz.scale(myDouble3));
-	}
+//	/**
+//	 * receives a double3 and multiplies the double3 by each coordinate of the vector
+//	 * 
+//	 * @param scalar
+//	 * @return new vector 
+//	 */
+//	public Vector scale(Double3 myDouble3) {
+//		return new Vector(this.xyz.scale(myDouble3));
+//	}
 
 }

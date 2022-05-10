@@ -17,9 +17,9 @@ public class SpotLight extends PointLight {
 	/**
 	 * Constructs spot light's intensity, position and direction vector
 	 * 
-	 * @param myIntensity
-	 * @param position
-	 * @param direction
+	 * @param myIntensity intensity
+	 * @param position of light source
+	 * @param direction vector
 	 */
 	public SpotLight(Color myIntensity, Point position, Vector direction) {
 		super(myIntensity, position);
@@ -40,7 +40,7 @@ public class SpotLight extends PointLight {
 	/**
 	 * Setter for scalar narrowBeam
 	 * 
-	 * @param myNarrowBeam
+	 * @param myNarrowBeam narrowness factor
 	 * @return updated point light itself
 	 */
 	public PointLight setNarrowBeam(int myNarrowBeam) {

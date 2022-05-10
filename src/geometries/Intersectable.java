@@ -12,7 +12,6 @@ import java.util.List;
  * Class Intersectable finds intersections between rays and geometries
  * 
  * @author Tomer and Nitay
- *
  */
 public abstract class Intersectable {
 
@@ -31,8 +30,8 @@ public abstract class Intersectable {
 	/**
 	 * finds intersections between ray and geometry
 	 * 
-	 * @param myRay
-	 * @return
+	 * @param myRay ray
+	 * @return intersections
 	 */
 	public List<GeoPoint> findGeoIntersections(Ray myRay) {
 		return findGeoIntersectionsHelper(myRay);
@@ -41,8 +40,8 @@ public abstract class Intersectable {
 	/**
 	 * finds intersections between ray and geometry
 	 * 
-	 * @param myRay
-	 * @return
+	 * @param myRay ray
+	 * @return intersections
 	 */
 	protected abstract List<GeoPoint> findGeoIntersectionsHelper(Ray myRay);
 
@@ -71,8 +70,6 @@ public abstract class Intersectable {
 		public boolean equals(Object obj) {
 			if (this == obj)
 				return true;
-			if (obj == null)
-				return false;
 			if (!(obj instanceof GeoPoint other))
 				return false;
 			return geometry == other.geometry && point.equals(other.point);

@@ -17,7 +17,7 @@ public class AmbientLight extends Light {
 	/**
 	 * Constructs ambient light with complete darkness
 	 */	
-	AmbientLight() {
+	public AmbientLight() {
 		super(Color.BLACK);
 	}
 	
@@ -30,6 +30,17 @@ public class AmbientLight extends Light {
 	 */
 	public AmbientLight(Color iA, Double3 kA){
 		super(iA.scale(kA));
+	}
+	
+	/**
+	 * Constructor to initialize color 
+	 * according to given formula
+	 * 
+	 * @param iA original light
+	 * @param kA discount factor
+	 */
+	public AmbientLight(Color iA, double kA){
+		super(iA.scale(new Double3(kA)));
 	}
 
 }

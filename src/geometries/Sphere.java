@@ -13,7 +13,7 @@ public class Sphere extends Geometry {
 	final private Point center;
 	final private double radius;
 	final private double radiusSqr;
-	
+
 	/**
 	 * Constructor to initialize Sphere based object with its values
 	 * 
@@ -30,7 +30,7 @@ public class Sphere extends Geometry {
 	public Vector getNormal(Point p) {
 		return p.subtract(center).normalize();
 	}
-	
+
 	@Override
 	public List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
 		Vector u;
