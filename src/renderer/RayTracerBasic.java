@@ -3,11 +3,11 @@
  */
 package renderer;
 
-import geometries.Triangle;
 import geometries.Intersectable.GeoPoint;
 import lighting.LightSource;
 import primitives.*;
 import scene.Scene;
+
 import static primitives.Util.*;
 
 import java.util.List;
@@ -24,11 +24,15 @@ public class RayTracerBasic extends RayTracerBase {
 	 * Constant variable DELTA for size of movement of rays head
 	 */
 	private static final double DELTA = 0.1;
+	
+	private static final int MAX_CALC_COLOR_LEVEL = 10;
+	private static final double MIN_CALC_COLOR_K = 0.001;
+	private static final double INITIAL_K = 1.0;
 
 	/**
 	 * Constructor which enables father constructor
 	 * 
-	 * @param myScene - scene
+	 * @param myScene scene
 	 */
 	public RayTracerBasic(Scene myScene) {
 		super(myScene);
@@ -42,18 +46,66 @@ public class RayTracerBasic extends RayTracerBase {
 	}
 
 	/**
-	 * receives a point and calculate and returns it's color
-	 * 
-	 * @param intersection geoPoint
-	 * @return color of pixel
-	 */
-	private Color calcColor(GeoPoint intersection, Ray ray) {
-		if (scene.ambientLight == null)
-			return intersection.geometry.getEmission().add(calcLocalEffects(intersection, ray));
-		return scene.ambientLight.getIntensity(). // Phong lighting model: ambient light +
-				add(intersection.geometry.getEmission()). // emission light +
-				add(calcLocalEffects(intersection, ray)); // local effects (diffusion + specular)
+	 * TODO: add description
+	 * @param intersection point
+	 * @param ray of light source
+	 * @param level TODO: add description
+	 * @param k TODO: add description
+	 * @return calculated color
+	 * */
+	private Color calcColor(GeoPoint intersection, Ray ray, int level, Double3 k) {
+//		if (scene.ambientLight == null)
+//			return intersection.geometry.getEmission().add(calcLocalEffects(intersection, ray));
+//		return scene.ambientLight.getIntensity(). // Phong lighting model: ambient light +
+//				add(intersection.geometry.getEmission()). // emission light +
+//				add(calcLocalEffects(intersection, ray)); // local effects (diffusion + specular)
+		Color color = intersection.geometry.getEmission().add(calcLocalEffects(intersection, ray));
+	    return 1 == level ? color : color.add(calcGlobalEffects(intersection, ray, level, k));
 	}
+	
+	/**
+	 * TODO: add description
+	 * @param gp intersection point
+	 * @param ray of light source
+	 * @return calculated color
+	 */
+	private Color calcColor(GeoPoint gp, Ray ray) {
+		return calcColor(gp, ray, MAX_CALC_COLOR_LEVEL, new Double3(INITIAL_K)).add(scene.ambientLight.getIntensity());
+	}
+
+	
+	/**
+	 * TODO: Calculates global effects of Phong lighting model 
+	 * @param intersection point
+	 * @param ray of source light
+	 * @param level TODO: add description
+	 * @param k TODO: add description
+	 * @return calculated color
+	 */
+	private Color calcGlobalEffects(GeoPoint intersection, Ray ray, int level, Double3 k) {
+		Color color = Color.BLACK;
+		
+		Double3 kR = intersection.geometry.getMaterial().kR;
+		Double3 kkr = k.scale(kR);	
+		Ray reflectedRay = constructReflectedRay(intersection.point, ray.getDir(),
+				intersection.geometry.getNormal(intersection.point));
+		GeoPoint reflectedPoint = findClosestIntersection(reflectedRay);
+		if(kkr.lowerThan(MIN_CALC_COLOR_K) && reflectedPoint != null) {
+			color = color.add(calcColor(reflectedPoint, reflectedRay, level - 1, kkr).scale(kR));
+		}
+		
+		Double3 kT = intersection.geometry.getMaterial().kT;
+		Double3 kkt = k.scale(kT);
+		Ray refractedRay = constructRefractedRay(intersection.point, ray.getDir(),
+				intersection.geometry.getNormal(intersection.point));
+		GeoPoint refractedPoint = findClosestIntersection(refractedRay);
+		if(kkt.lowerThan(MIN_CALC_COLOR_K) && refractedPoint != null) {
+			color = color.add(calcColor(refractedPoint, refractedRay, level - 1, kkt).scale(kT));
+		}
+		
+		return color;
+	}
+
 
 	/**
 	 * Auxiliary method to calculate local effects
@@ -129,10 +181,8 @@ public class RayTracerBasic extends RayTracerBase {
 	 * @return is shaded (boolean)
 	 */
 	private boolean unShaded(GeoPoint gp, Vector l, Vector n, double nv, LightSource ls) {
-		Vector lightDirection = l.scale(-1);
-		Vector delVector = n.scale(nv < 0 ? DELTA : -DELTA);
-		Point point = gp.point.add(delVector);
-		Ray lightRay = new Ray(point, lightDirection);
+		Point point = gp.point.add(n.scale(nv < 0 ? DELTA : -DELTA));
+		Ray lightRay = new Ray(point, l.scale(-1));
 		List<GeoPoint> intersections = scene.geometries.findGeoIntersections(lightRay);
 		
 		if (intersections == null) {
@@ -140,11 +190,47 @@ public class RayTracerBasic extends RayTracerBase {
 		}
 		
 		for (GeoPoint intersection : intersections) {
-			if (intersection.point.distance(lightRay.getP0()) < ls.getDistance(gp.point)) {
+			if (intersection.point.distance(lightRay.getP0()) < ls.getDistance(gp.point) &&
+					gp.geometry.getMaterial().kT == Double3.ZERO) {
 				return false;
 			}
 		}
 		
 		return true;
+	}
+	
+	/**
+	 * Calculates the refracted ray
+	 * @param p intersection point
+	 * @param v in vector
+	 * @param n normal vector
+	 * @return refracted ray
+	 */
+	private Ray constructRefractedRay(Point p, Vector v, Vector n) {
+		return new Ray(p.add(n.scale(-DELTA)), v);
+	}
+	
+	/**
+	 * Calculates the reflected ray
+	 * @param p intersection point
+	 * @param v in vector
+	 * @param n normal vector
+	 * @return reflected ray
+	 */
+	private Ray constructReflectedRay(Point p, Vector v, Vector n) {
+		return new Ray(p.add(n.scale(DELTA)), v.subtract(n.scale(2*v.dotProduct(n))));
+	}
+	
+	/**
+	 * Finding closest intersection point to head of ray
+	 * @param ray to find closest point to
+	 * @return closest point
+	 */
+	private GeoPoint findClosestIntersection(Ray ray) {
+		List<GeoPoint> intersections = scene.geometries.findGeoIntersections(ray);	
+		if (intersections == null) {
+			return null;
+		}	
+		return ray.findClosestGeoPoint(intersections);	
 	}
 }
